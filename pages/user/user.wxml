@@ -1,10 +1,10 @@
 <!-- 个人中心 -->
 <view class="container">
-    <view class="unlogin_wrap">
+    <view class="unlogin_wrap" hidden="{{isLogin?true:false}}">
         <button class="click_login" type="default" size="{{defaultSize}}" 
         bindtap="clickLogin"> 登录 </button>
     </view>
-    <view class="logined_wrap" hidden="true">
+    <view class="logined_wrap" hidden="{{isLogin?false:true}}">
         <!-- (logined)个人头像，用户名等信息 -->
         <navigator class="user_info">
             <!-- 头像 -->
