@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/products/products",
+    "pages/user/user",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -9,6 +10,27 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/products/products",
+      "text": "product",
+      "iconPath": "/logo/app store.png",
+      "selectedIconPath": "/logo/app store.png"
+    },
+    {
+      "pagePath": "pages/products/products",
+      "text": "notification",
+      "iconPath": "/logo/comment.png",
+      "selectedIconPath": "/logo/comment.png"
+    },
+    {
+      "pagePath": "pages/user/user",
+      "text": "user",
+      "iconPath": "/logo/user.png",
+      "selectedIconPath": "/logo/user.png"
+    }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

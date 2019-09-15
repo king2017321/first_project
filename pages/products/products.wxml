@@ -1,6 +1,6 @@
 <view class="products_warp">
     <!-- 上部：展示 -->
-    <view style="height:400rpx;background-color:#fff;">
+    <view style="background-color:#fff;">
       <swiper autoplay indicator-dots circular>
         <swiper-item wx:for="{{swiperList}}" wx:key="{{index}}">
           <navigator>
