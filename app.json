@@ -3,7 +3,11 @@
     "pages/products/products",
     "pages/user/user",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/trade/trade",
+    "pages/sell/sell",
+    "pages/list/list",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

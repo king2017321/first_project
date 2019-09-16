@@ -16,11 +16,11 @@
     <view class="products_list">
         <!-- 功能一,url是用来跳转页面的 -->
         <navigator 
-        url=""
+        url="/pages/trade/trade"
         class="products_item">
             <view class="product_shower">
-                <image class="gongneng1_logo" src="../../logo/logo.jpg"/>
-                <h1>功能一</h1>
+                <image class="gongneng1_logo" src="../../assets/trade.png"/>
+                <h1>二手交易</h1>
             </view>
         </navigator>
 

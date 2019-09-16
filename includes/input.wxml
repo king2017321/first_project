@@ -1,0 +1,57 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__hd">
+    <view class="page__title">输入基本信息</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell ">
+        <view class="weui-cell__hd">
+          <view class="weui-label">标题</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="title" class="weui-input" placeholder="请输入关键词" />
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <view class="weui-label">手机号</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="phone" class="weui-input" placeholder="请输入手机号" />
+        </view>
+      </view>
+      <view class="weui-cell ">
+        <view class="weui-cell__hd">
+          <view  class="weui-label">微信</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="wx" class="weui-input" placeholder="请输入微信" />
+        </view>
+      </view>
+      <view class="weui-cell ">
+        <view class="weui-cell__hd">
+          <view class="weui-label">价格</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name = "price"class="weui-input" placeholder="请输入价格" />
+        </view>
+      </view>
+      <view class="weui-cell ">
+        <view class="weui-cell__hd">
+          <view class="weui-label">QQ</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="qq" class="weui-input" placeholder="请输入QQ" />
+        </view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea name = "brief_description" class="weui-textarea" placeholder="请输入一段关于商品的简短描述" style="height: 3.3em" />
+            <view class="weui-textarea-counter">0/200</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

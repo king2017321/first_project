@@ -1,6 +1,9 @@
 //app.js
 App({
-  onLaunch: function () {
+  config: {
+    apiBase: 'http://localhost:8088'
+  },
+  onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
