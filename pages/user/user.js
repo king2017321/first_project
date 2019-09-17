@@ -5,54 +5,94 @@ Page({
    * 页面的初始数据
    */
   data: {
+    functionList: [{
+        "url":"/xx",
+        "title": "我的"
+      },
+      {
+        "url":"/xx",
+        "title": "信誉中心"
+      },
+      {
+        "url":"/xx",
+        "title": "。。。"
+      },
+    ],
+
+
     isLogin: false,
+    avatarUrl:"",
+    nickname:"",
   },
 
   /**
    * 点击登录
    */
-  clickLogin(){
-    var that = this
+clickLogin(e){
+  console.log("eeeee:",e)
+  var that = this
+  if(e.detail.errMsg=="getUserInfo:ok"){
+    that.setData({
+      avatarUrl:e.detail.userInfo.avatarUrl,
+      nickName:e.detail.userInfo.nickName
+    })
     wx.login({
       success (res) {
         if (res.code) {
-          // console.log(res.code)
+          var code = res.code
+          // 获取code2Session
           wx.request({
-            method: 'GET',
-            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code',
-            data: {
-                appid: appid,
-                secret: secret,
-                js_code: code,
-                grant_type: 'authorization_code'
-            },
+            // 服务器url
+            url:"http://localhost:8081/user/login?code="+code,
             success(res) {
-              that.setData({
-                isLogin:true
-              })
-              // console.log("code:",res)
+              if(!res.data.errcode){
+                that.setData({
+                  isLogin:true
+                })
+                console.log("登录成功",res)
+              }
+              else{
+                console.log('登录失败',res)
+              }
             }
           })
-          
         } else {
           console.log('登录失败！' + res.errMsg)
         }
       }
     })
-  },
+  }
 
-  /***
-   * 获取code2Session
+  },
+  /**
+   * 查看是否已经授权
    */
-  getCode2Session(appid,secret,code){
-
+  chackAuth(){
+    var that = this
+    wx.getSetting({
+      success(res){
+        // 查看是否授权
+        if(res.authSetting['scope.userInfo']){
+          wx.getUserInfo({
+            success(res){
+              that.setData({
+                avatarUrl:res.userInfo.avatarUrl,
+                nickName:res.userInfo.nickName,
+                isLogin:true
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
+   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.chackAuth()
   },
 
   /**

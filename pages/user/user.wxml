@@ -1,20 +1,20 @@
 <!-- 个人中心 -->
 <view class="container">
     <view class="unlogin_wrap" hidden="{{isLogin?true:false}}">
-        <button class="click_login" type="default" size="{{defaultSize}}" 
-        bindtap="clickLogin"> 登录 </button>
+        <button class="click_login" open-type="getUserInfo" size="{{defaultSize}}" 
+        bindgetuserinfo="clickLogin"> 登录 </button>
     </view>
     <view class="logined_wrap" hidden="{{isLogin?false:true}}">
         <!-- (logined)个人头像，用户名等信息 -->
         <navigator class="user_info">
             <!-- 头像 -->
             <view class="avator_wrap">
-                <image class="avator" src="../../logo/logo.jpg"/>
+                <image class="avator" src="{{avatarUrl}}"/>
             </view>
             <!-- 昵称、和something else -->
             <view class="user_detail">
                 <view class="user_name">
-                    姓名
+                    {{nickName}}
                 </view>
                 <!-- 信用 -->
                 <view class="my_credit">
@@ -26,25 +26,15 @@
                 <image class="more_logo" src="../../logo/right.png"></image>
             </view> 
         </navigator>
-        <!-- 我的 -->
-        <navigator class="mine_wrap"
-            url=""
+
+        <!-- 功能列表 -->
+        <navigator class="function_list"
+        wx:for="{{functionList}}" wx:key="{{index}}"
+            url="{{item.url}}"
             hover-class="navigator-hover">
             <!-- 点击查看 -->
-            <view class="to_mine">
-                我的
-            </view>
-            <view class="more">
-                <image class="more_logo" src="../../logo/right.png"></image>
-            </view> 
-        </navigator>
-        <!-- 信用 -->
-        <navigator class="credit_wrap"
-            url=""
-            hover-class="navigator-hover">
-            <!-- 点击查看 -->
-            <view class="to_credit"> 
-                信用
+            <view class="title">
+                {{item.title}}
             </view>
             <view class="more">
                 <image class="more_logo" src="../../logo/right.png"></image>
