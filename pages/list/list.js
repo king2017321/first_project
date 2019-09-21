@@ -11,13 +11,15 @@ Page({
     inputVal: "",
     category: null,
     items: [],
+    searchItems: [],
+    showSearch: false,
     pageIndex: 0,
     pageSize: 20,
     hasMore: false,
     totalCount: 0
   },
   // total count
-  loadMore() {
+  loadMore: function() {
     let {
       pageIndex,
       category
@@ -36,6 +38,24 @@ Page({
       })
   },
 
+  search: function() {
+    var inputVal = this.data.inputVal
+    if (inputVal == "") return
+    return fetch('/buy/record/search/' + inputVal).then(res => {
+      this.setData({
+        showSearch: true,
+        searchItems: res.data
+      })
+      console.log(res.data)
+    })
+  },
+
+  cancelSearch: function() {
+    this.setData({
+      searchItems: [],
+      showSearch: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,34 +65,6 @@ Page({
     })
 
     this.loadMore()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
   },
 
   /**
@@ -111,6 +103,7 @@ Page({
       inputVal: "",
       inputShowed: false
     });
+    this.cancelSearch()
   },
   clearInput: function() {
     this.setData({
@@ -121,5 +114,6 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+    this.search()
   }
 })

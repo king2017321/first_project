@@ -1,15 +1,14 @@
-<view wx:if="{{category}}=='sell'">
+<view wx:if="{{category=='sell'}}">
   <navigator url="/pages/sell/sell">
     <button>添加记录</button>
   </navigator>
 </view>
-
 <view wx:else>
 
   <include src="/includes/search-bar.wxml" />
 
-  <view class="cells">
-    <navigator class="item" wx:for="{{items}}" wx:key="id" url="/pages/detail/detail?item={{item.id}}">
+  <view class="cells" wx:if="{{showSearch}}">
+    <navigator class="item" wx:for="{{searchItems}}" wx:key="id" url="/pages/detail/detail?item={{item.id}}">
       <image src="{{item.images[0]}}" mode="aspectFill" />
       <view class="meta">
         <text class="name">{{item.title}}</text>
@@ -21,8 +20,22 @@
       <view class="score">价格: {{item.price}}</view>
     </navigator>
   </view>
-  <view wx:if="{{hasMore}}" class="loadmore loading">
+  <view class="cells" wx:else>
+    <navigator class="item" wx:for="{{items}}" wx:key="id" url="/pages/detail/detail?item={{item.id}}">
+      <image src="{{item.images[0]}}" mode="aspectFill" />
+      <view class="meta">
+        <text class="name">{{item.title}}</text>
+        <text class="address">描述: {{item.briefDescription}}</text>
+        <text class="phone">电话：{{item.phone || 'none'}}</text>
+        <text class="hours">QQ: {{item.qq}}</text>
+        <text class="hours">微信: {{item.wx}}</text>
+      </view>
+      <view class="score">价格: {{item.price}}</view>
+    </navigator>
+    <view wx:if="{{hasMore}}" class="loadmore loading">
 
-    正在加载...</view>
-  <view wx:else class="loadmore">没有更多内容了</view>
+      正在加载...</view>
+    <view wx:else class="loadmore">没有更多内容了</view>
+  </view>
+
 </view>
