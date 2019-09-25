@@ -1,5 +1,6 @@
 //app.js
 App({
+  //const cloud = require('wx-server-sdk'),
   config: {
     apiBase: 'http://localhost:8088'
   },
@@ -8,6 +9,10 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    wx.cloud.init({
+      env :'cloudpg-v0ty3',
+      traceuser:true
+    })
 
     // 登录
     wx.login({

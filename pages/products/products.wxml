@@ -26,7 +26,7 @@
 
         <!-- 功能二.url是用来跳转页面的 -->
         <navigator 
-        url=""
+        url="/pages/advertisement/advertisement"
         class="products_item">
             <view class="product_shower">
                 <image class="gongneng2_logo" src="../../logo/logo.jpg"/>

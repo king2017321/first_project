@@ -7,7 +7,10 @@
     "pages/trade/trade",
     "pages/sell/sell",
     "pages/list/list",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/advertisement/advertisement",
+    "pages/publish_advertisement/publish_advertisement"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,5 +39,6 @@
     }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "cloud": true
 }
