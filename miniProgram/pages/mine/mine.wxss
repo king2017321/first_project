@@ -1,0 +1,11 @@
+.mine_list{
+    width: 100%;
+}
+.list_item{
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom:  0.1rpx solid rgb(189, 189, 189);
+}

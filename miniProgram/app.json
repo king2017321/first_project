@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/products/products",
+    "pages/mine/mine",
+    "pages/user_detial/user_detial",
     "pages/user/user",
     "pages/index/index",
     "pages/logs/logs",

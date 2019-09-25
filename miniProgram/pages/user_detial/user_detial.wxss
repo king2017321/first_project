@@ -1,0 +1,40 @@
+.user_title{
+    position: relative;
+    display: flex;
+    width:100%;
+    max-height:750rpx;
+    overflow: hidden;
+    margin-bottom: 10rpx;
+}
+.user_title image{
+    overflow: hidden;
+    flex:1;
+}
+.user_title h1{
+    padding: 20rpx;
+    color: #fff;
+    font-size: 70rpx;
+    position: absolute;
+    bottom:0rpx;
+}
+
+
+/* 详细信息 */
+.detial_info{
+    width:100%;
+}
+.text_warp{
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom:  0.1rpx solid rgb(189, 189, 189);
+}
+.lable{
+    font-size: 28rpx;
+    color: #666;
+}
+
+
+

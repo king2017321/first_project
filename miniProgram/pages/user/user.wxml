@@ -6,7 +6,9 @@
     </view>
     <view class="logined_wrap" hidden="{{isLogin?false:true}}">
         <!-- (logined)个人头像，用户名等信息 -->
-        <navigator class="user_info">
+        <navigator 
+        url="/pages/user_detial/user_detial"
+        class="user_info">
             <!-- 头像 -->
             <view class="avator_wrap">
                 <image class="avator" src="{{avatarUrl}}"/>

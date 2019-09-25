@@ -1,4 +1,5 @@
 // pages/user/user.js
+const app = getApp()
 Page({
 
   /**
@@ -6,7 +7,7 @@ Page({
    */
   data: {
     functionList: [{
-        "url":"/xx",
+        "url":"/pages/mine/mine",
         "title": "我的"
       },
       {
@@ -68,22 +69,10 @@ clickLogin(e){
    * 查看是否已经授权
    */
   chackAuth(){
-    var that = this
-    wx.getSetting({
-      success(res){
-        // 查看是否授权
-        if(res.authSetting['scope.userInfo']){
-          wx.getUserInfo({
-            success(res){
-              that.setData({
-                avatarUrl:res.userInfo.avatarUrl,
-                nickName:res.userInfo.nickName,
-                isLogin:true
-              })
-            }
-          })
-        }
-      }
+    this.setData({
+      avatarUrl:app.globalData.avatarUrl,
+      nickName:app.globalData.nickName,
+      isLogin:app.globalData.isLogin
     })
   },
 
@@ -93,6 +82,7 @@ clickLogin(e){
    */
   onLoad: function (options) {
     this.chackAuth()
+
   },
 
   /**
