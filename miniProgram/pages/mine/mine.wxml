@@ -1,11 +1,10 @@
 <view class="mine_list">
-    <navigator class="list_item"
-    url=""
-    id="{{item.id}}"
+    <view class="list_item"
+    id="{{item._id}}"
     bindtap="deleteItem"
     wx:for="{{tradeList}}" wx:key="{{item.id}}">
-        <text>交易时间:{{item.timestamp}}</text>
-        <text>交易对象:{{item.tUser}}</text>
-        <text>交易对象:{{item.id}}</text>
-    </navigator>
+        <text>交易时间:{{item.date}}</text>
+        <text>交易对象:{{item.trade_with}}</text>
+        <text>交易id:{{item._id}}</text>
+    </view>
 </view>

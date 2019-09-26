@@ -37,6 +37,9 @@ clickLogin(e){
       avatarUrl:e.detail.userInfo.avatarUrl,
       nickName:e.detail.userInfo.nickName
     })
+
+    
+  ////////////////<<<<<<<<<<<<<<在服务器端获取通信秘钥，云开发中停用
     wx.login({
       success (res) {
         if (res.code) {
@@ -62,6 +65,8 @@ clickLogin(e){
         }
       }
     })
+///////////////////////>>>>>>>>>>>>
+
   }
 
   },
