@@ -35,36 +35,38 @@ clickLogin(e){
   if(e.detail.errMsg=="getUserInfo:ok"){
     that.setData({
       avatarUrl:e.detail.userInfo.avatarUrl,
-      nickName:e.detail.userInfo.nickName
+      nickName:e.detail.userInfo.nickName,
+      // islogin 不应该在这
+      isLogin:true
     })
 
     
   ////////////////<<<<<<<<<<<<<<在服务器端获取通信秘钥，云开发中停用
-    wx.login({
-      success (res) {
-        if (res.code) {
-          var code = res.code
-          // 获取code2Session
-          wx.request({
-            // 服务器url
-            url:"http://localhost:8081/user/login?code="+code,
-            success(res) {
-              if(!res.data.errcode){
-                that.setData({
-                  isLogin:true
-                })
-                console.log("登录成功",res)
-              }
-              else{
-                console.log('登录失败',res)
-              }
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
+    // wx.login({
+    //   success (res) {
+    //     if (res.code) {
+    //       var code = res.code
+    //       // 获取code2Session
+    //       wx.request({
+    //         // 服务器url
+    //         url:"http://localhost:8081/user/login?code="+code,
+    //         success(res) {
+    //           if(!res.data.errcode){
+    //             that.setData({
+    //               isLogin:true
+    //             })
+    //             console.log("登录成功",res)
+    //           }
+    //           else{
+    //             console.log('登录失败',res)
+    //           }
+    //         }
+    //       })
+    //     } else {
+    //       console.log('登录失败！' + res.errMsg)
+    //     }
+    //   }
+    // })
 ///////////////////////>>>>>>>>>>>>
 
   }
