@@ -1,17 +1,17 @@
 {
   "pages": [
-    "pages/products/products",
+    "pages/index/index",
     "pages/mine/mine",
     "pages/user_detial/user_detial",
     "pages/user/user",
-    "pages/index/index",
     "pages/logs/logs",
-    "pages/trade/trade",
-    "pages/sell/sell",
-    "pages/list/list",
-    "pages/detail/detail",
+    "pages/second_hand_transaction/index/index",
+    "pages/second_hand_transaction/sell/sell",
+    "pages/second_hand_transaction/list/list",
+    "pages/second_hand_transaction/detail/detail",
     "pages/advertisement/advertisement",
-    "pages/publish_advertisement/publish_advertisement"
+    "pages/publish_advertisement/publish_advertisement",
+    "pages/notification/notification"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,25 +20,27 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/products/products",
-      "text": "product",
-      "iconPath": "/logo/app store.png",
-      "selectedIconPath": "/logo/app store.png"
-    },
-    {
-      "pagePath": "pages/products/products",
-      "text": "notification",
-      "iconPath": "/logo/comment.png",
-      "selectedIconPath": "/logo/comment.png"
-    },
-    {
-      "pagePath": "pages/user/user",
-      "text": "user",
-      "iconPath": "/logo/user.png",
-      "selectedIconPath": "/logo/user.png"
-    }
-    ]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/assets/home.png",
+        "selectedIconPath": "/assets/home-active.png"
+      },
+      {
+        "pagePath": "pages/notification/notification",
+        "text": "通知",
+        "iconPath": "/assets/message.png",
+        "selectedIconPath": "/assets/message-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "/assets/profile.png",
+        "selectedIconPath": "/assets/profile-active.png"
+      }
+    ],
+    "position": "bottom"
   },
   "sitemapLocation": "sitemap.json",
   "cloud": true

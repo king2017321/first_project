@@ -1,12 +1,13 @@
-// pages/products/products.js
+// miniProgram/pages/notification/notification.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swiperList:[1,2,3,4,5]
+
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -18,6 +19,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
   },
 
   /**

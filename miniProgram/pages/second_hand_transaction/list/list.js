@@ -1,4 +1,4 @@
-const fetch = require('../../utils/fetch')
+const fetch = require('../../../utils/fetch')
 
 
 Page({

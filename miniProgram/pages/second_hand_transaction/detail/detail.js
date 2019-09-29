@@ -1,4 +1,4 @@
-const fetch = require('../../utils/fetch')
+const fetch = require('../../../utils/fetch')
 
 Page({
   /**
@@ -22,7 +22,7 @@ Page({
   previewHandle (e) {
     wx.previewImage({
       current: e.target.dataset.src,
-      urls: this.data.shop.images
+      urls: this.data.good.images
     })
   }
 })

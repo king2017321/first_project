@@ -1,5 +1,5 @@
 <view wx:if="{{category=='sell'}}">
-  <navigator url="/pages/sell/sell">
+  <navigator url="/pages/second_hand_transaction/sell/sell">
     <button>添加记录</button>
   </navigator>
 </view>
@@ -8,7 +8,7 @@
   <include src="/includes/search-bar.wxml" />
 
   <view class="cells" wx:if="{{showSearch}}">
-    <navigator class="item" wx:for="{{searchItems}}" wx:key="id" url="/pages/detail/detail?id={{item.id}}">
+    <navigator class="item" wx:for="{{searchItems}}" wx:key="id" url="/pages/second_hand_transaction/detail/detail?id={{item.id}}">
       <image src="{{item.images[0]}}" mode="aspectFill" />
       <view class="meta">
         <text class="name">{{item.title}}</text>
@@ -21,7 +21,7 @@
     </navigator>
   </view>
   <view class="cells" wx:else>
-    <navigator class="item" wx:for="{{items}}" wx:key="id" url="/pages/detail/detail?id={{item.id}}">
+    <navigator class="item" wx:for="{{items}}" wx:key="id" url="/pages/second_hand_transaction/detail/detail?id={{item.id}}">
       <image src="{{item.images[0]}}" mode="aspectFill" />
       <view class="meta">
         <text class="name">{{item.title}}</text>
