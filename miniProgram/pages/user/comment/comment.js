@@ -1,5 +1,5 @@
 // pages/comment/comment.js
-import { formatTime } from '../../utils/util.js';
+import { formatTime } from '../../../utils/util.js';
 var getDate = formatTime(new Date());
 Page({
 

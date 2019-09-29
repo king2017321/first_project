@@ -1,0 +1,17 @@
+<swiper class="slides" indicator-dots="{{good.images.length > 1}}" indicator-color="#bcc0c9" indicator-active-color="#3a4861" autoplay="true">
+  <swiper-item wx:for="{{good.images}}" wx:key="id">
+    <image src="{{item}}" mode="aspectFill" bindtap="previewHandle" data-src="{{item}}"/>
+  </swiper-item>
+</swiper>
+
+<view class="heading" wx:if="{{good.title}}">
+  <text class="name">{{good.title}}</text>
+  <text class="phone">电话：{{good.phone || 'none'}}</text>
+  <text class="address">微信：{{good.wx}}</text>
+  <text class="hours">QQ: {{good.qq}}</text>
+  <view class="hours" wx:if="{{good.price}}">价格: {{good.price}}</view>
+</view>
+
+<view class="introduction" wx:if="{{good.briefDescription}}">
+  <text>{{good.briefDescription}}</text>
+</view>

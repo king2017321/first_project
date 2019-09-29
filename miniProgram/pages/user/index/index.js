@@ -7,7 +7,7 @@ Page({
    */
   data: {
     functionList: [{
-        "url":"/pages/mine/mine",
+        "url":"/pages/user/mine/mine",
         "title": "我的"
       },
       {
@@ -15,7 +15,7 @@ Page({
         "title": "信誉中心"
       },
       {
-        "url":"/pages/comment/comment",
+        "url":"/pages/user/comment/comment",
         "title": "评价"
       },
     ],
@@ -30,7 +30,6 @@ Page({
    * 点击登录
    */
 clickLogin(e){
-  console.log("eeeee:",e)
   var that = this
   if(e.detail.errMsg=="getUserInfo:ok"){
     that.setData({
