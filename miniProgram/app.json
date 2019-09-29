@@ -9,10 +9,15 @@
     "pages/second_hand_transaction/sell/sell",
     "pages/second_hand_transaction/list/list",
     "pages/second_hand_transaction/detail/detail",
-    "pages/advertisement/advertisement",
-    "pages/publish_advertisement/publish_advertisement",
+    "pages/advertisement/advertisement_list/advertisement_list",
+    "pages/advertisement/publish_advertisement/publish_advertisement",
     "pages/notification/notification",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/advertisement/advertisement_detail/advertisement_detail",
+    "pages/advertisement/search_advertisement/search_advertisement",
+    "pages/advertisement/advertisement",
+    "pages/advertisement/advertisement_index/advertisement_index",
+    "pages/advertisement/advertisement_mylist/advertisement_mylist"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,34 @@
+<!--pages/search_advertisement/search_advertisement.wxml--><view class="page">
+<form bindsubmit="formSubmit">
+<view class="weui-search-bar">
+
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+       <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" name="search_advertisement" placeholder="请输入查询内容" bindinput="search_input"/>
+    </view>
+  </view>
+  <view class="weui-search-bar__btn">
+            <button hover-class= "search-btn-hover" formType="submit" size="mini">搜索</button> 
+  </view>          
+</view>
+ </form>
+</view> 
+<view wx:for = "{{list}}">
+<van-card
+desc="{{item.brief_description}}"
+  title="{{item.title}}"
+  thumb="{{item.imageID[0]}}"
+>
+
+<view slot="footer">
+    <text>发布：{{item.who}}</text>
+    <van-button data-id="{{item._id}}" size="small" type="primary" plain bind:click="viewItem">查看详情</van-button>
+  </view>
+</van-card>
+</view>
+<view class="page__link"style="position:width:750rpx">
+<navigator url="/pages/publish_advertisement/publish_advertisement">
+<button class="weui-btn" form-type="submit"type="primary">发布</button>
+</navigator>
+</view>

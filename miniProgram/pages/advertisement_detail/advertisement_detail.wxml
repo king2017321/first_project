@@ -1,0 +1,9 @@
+<!--pages/advertisement_detail/advertisement_detail.wxml-->
+<text class="weui-title" style="font-size:40px">{{list.title}}\n</text>
+<text class="who" style="color:#21a675">发布：{{list.who}}\n</text>
+<text class = "des" style="font-size:20px">{{list.brief_description}}\n</text>
+<view style = "float:none;width:100%;flex-direction:row-reverse">
+<view  wx:for="{{list.imageID}}" >
+<image src="{{item}}" mode="aspectFill" style="width:100%"></image>
+</view>
+</view>
