@@ -32,6 +32,7 @@ page{
     align-items: center;
 }
 .avator_wrap image{
+   padding:10rpx;
    width: 100%;
    max-height: 200rpx;
 }

@@ -1,4 +1,6 @@
 // pages/mine/mine.js
+import { formatTime } from '../../utils/util.js';
+var getDate = formatTime(new Date());
 Page({
 
   /**
@@ -20,7 +22,7 @@ Page({
     trade_info.get({
       success: function(res) {
         that.setData({
-          tradeList:res.data
+          tradeList:res.data.reverse()
         })
         console.log("get_list",res.data)
       }
@@ -83,7 +85,7 @@ Page({
     const add_trade_info = db.collection('trade_info')
     add_trade_info.add({
       data:{
-        date:new Date(),
+        date:getDate,
         trade_with:'ring'
       },
       success(res) {

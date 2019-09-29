@@ -1,0 +1,15 @@
+<view class="comment_wrap">
+    <navigator class="comment_content" wx:for="{{comment_data}}" wx:key="{{index}}">
+        <!-- 左部，头像 -->
+        <view class="avatar_wrap">
+            <image class="avatar" src="{{item.avatarUrl}}"/>
+        </view>
+        <!-- 右部，信息 -->
+        <view class="comment_info">
+            <text class="username">{{item.username}}</text>
+            <text class="comment_text">{{item.commentText}}</text>
+            <text class="comment_date">{{item.date}}</text>
+        </view>
+    </navigator>
+
+</view>

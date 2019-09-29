@@ -15,8 +15,8 @@ Page({
         "title": "信誉中心"
       },
       {
-        "url":"/xx",
-        "title": "。。。"
+        "url":"/pages/comment/comment",
+        "title": "评价"
       },
     ],
 

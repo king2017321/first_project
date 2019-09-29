@@ -29,11 +29,9 @@ App({
         if(res.authSetting['scope.userInfo']){
           wx.getUserInfo({
             success(res){
-              // that.setData({
-                that.globalData.avatarUrl = res.userInfo.avatarUrl,
-                that.globalData.nickName=res.userInfo.nickName,
-                that.globalData.isLogin=true
-              // })
+              that.globalData.avatarUrl = res.userInfo.avatarUrl,
+              that.globalData.nickName=res.userInfo.nickName,
+              that.globalData.isLogin=true
             }
           })
         }
@@ -58,6 +56,6 @@ App({
   globalData: {
     isLogin: false,
     avatarUrl:"",
-    nickname:"",
+    nickName:"",
   }
 })
