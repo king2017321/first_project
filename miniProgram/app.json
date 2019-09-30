@@ -5,6 +5,7 @@
     "pages/user/mine/mine",
     "pages/user/user_detial/user_detial",
     "pages/user/index/index",
+    "pages/exposure/index/index",
     "pages/second_hand_transaction/index/index",
     "pages/second_hand_transaction/sell/sell",
     "pages/second_hand_transaction/list/list",
