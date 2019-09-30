@@ -1,0 +1,36 @@
+
+<block wx:for="{{detailjson}}" wx:key='list' wx:for-item="item" > 
+      <!--block wx:for="{{item.fileIDs}}" wx:key='list'  wx:for-item="item"-->
+  
+  
+    <swiper class="movie-swiper" indicator-dots="{{true}}" previous-margin="50rpx" next-margin="50rpx">
+   <swiper-item class='movie' wx:for="{{item.fileIDs}}">
+    <view 
+    class="container movie-card" 
+    >
+      <image src='{{item}}' class="movie-image"></image>
+      </view>
+    </swiper-item>
+</swiper>  
+  
+  
+ <view class="info"> 
+   <view class='price'>￥{{item.price}}/月 </view>
+   </view>
+ <view class="tiao">
+位置:{{item.areatype}}</view>
+<view class='tiao'>户型:{{item.roomtype}}</view>
+<view class="tiao">
+面积:{{item.area}}</view>
+<view class="tiao">
+备注:{{item.beizhu}}</view>
+<view class="tiao">
+联系电话:{{item.tele}}</view>
+
+</block>
+
+
+
+ 
+
+

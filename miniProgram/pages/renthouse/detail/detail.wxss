@@ -1,0 +1,26 @@
+.movie{
+  display: flex;
+}
+.movie-datails{
+  display: flex;
+  flex-direction: column;
+  width: 400rpx;
+}
+
+.movie-image{
+  width: 600rpx;
+  height: 700rpx;
+}
+.movie-swiper{
+  height: 50vh;
+}
+.movie-card{
+  height: 100%;
+  width: 100%;
+  background: #eee;
+  margin: 0 20rpx;
+}
+.info{border-bottom:1px solid#eee;background:#eee;padding:10px 20px;margin-left: 30px;margin-right: 30px;margin-top: 10px;margin-bottom: 10px}
+.wenzi{color:#000;}
+.price{height:50px;line-height:50px;color:#FF6666;font-size: 25px; margin: 10px}
+.tiao{border-top:1px solid #eee;background:#eee; padding:10px 20px;margin: 10px 30px}

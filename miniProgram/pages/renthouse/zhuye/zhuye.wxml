@@ -1,0 +1,20 @@
+
+<view style="font-size:x-large;text-align:center;margin-top:10px;margin-bottom:10px">请选择您要查询的房源：</view>
+<view style="margin:5px 10px">
+    <radio-group bindchange="areaset">
+        <label  wx:for="{{areas}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+    </radio-group>
+</view>
+<view style="margin:5px 10px">
+      <radio-group bindchange="roomset">
+              <label  wx:for="{{rooms}}">
+                <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.value}}
+              </label>
+      </radio-group>
+</view>
+
+
+<button  style="margin-top:15px;align-items:center" bindtap="onQuery">查询记录</button>
+
