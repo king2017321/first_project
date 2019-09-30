@@ -31,9 +31,9 @@ Page({
    * 点击登录
    */
   clickLogin(e) {
-    var that = this
+    console.log(e)
     if (e.detail.errMsg == "getUserInfo:ok") {
-      that.setData({
+      this.setData({
         avatarUrl: e.detail.userInfo.avatarUrl,
         nickName: e.detail.userInfo.nickName,
         // islogin 不应该在这
@@ -61,16 +61,15 @@ Page({
    * 查看是否已经授权
    */
   chackAuth() {
-    var that = this
     wx.getSetting({
-      success(res) {
+      success: function(res) {
         // 查看是否授权
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
-            success(res) {
-              that.globalData.avatarUrl = res.userInfo.avatarUrl,
-                that.globalData.nickName = res.userInfo.nickName,
-                that.globalData.isLogin = true
+            success: function(res) {
+              app.globalData.avatarUrl = res.userInfo.avatarUrl,
+                app.globalData.nickName = res.userInfo.nickName,
+                app.globalData.isLogin = true
             }
           })
         }
