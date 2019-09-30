@@ -12,7 +12,6 @@
     "pages/advertisement/advertisement_list/advertisement_list",
     "pages/advertisement/publish_advertisement/publish_advertisement",
     "pages/notification/notification",
-    "pages/logs/logs",
     "pages/advertisement/advertisement_detail/advertisement_detail",
     "pages/advertisement/search_advertisement/search_advertisement",
     "pages/advertisement/advertisement",
