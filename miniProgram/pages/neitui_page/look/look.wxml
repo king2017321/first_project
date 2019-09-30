@@ -1,0 +1,6 @@
+<!--miniprogram/pages/look/look.wxml-->
+<view class="container">
+  <text>公司：{{company}}</text>
+  <text>介绍：{{introduce}}</text>
+  <image mode='aspectFit' src="{{img}}"></image>
+</view>

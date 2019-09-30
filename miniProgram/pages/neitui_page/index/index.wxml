@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <text>开始我们的战争吧</text>
+</view>
+
+<view class="uploader">
+  <navigator url="../daf/daf" open-type="navigate" class="uploader-text">
+    <text>开始吧</text>
+  </navigator>
+</view>

@@ -1,0 +1,22 @@
+<!--miniprogram/pages/add/add.wxml-->
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="row">
+      <text>公司：</text>
+      <input type="text" name="company" placeholder="请输入公司" value="{{company}}" />
+    </view>
+    <view class="row">
+      <text>介绍：</text>
+      <input type="text" name="introduce" placeholder="请输入介绍" value="{{introduce}}" />
+    </view>
+    <text decode="true" space="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+    <button size="mini" bindtap="addimg" type="primary">选择图片</button>
+    <text decode="true" space="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+    <button size="mini" bindtap="delimg" type="primary">清除图片</button>
+    <image mode='aspectFit' src="{{img}}"></image>
+    <view class="row">
+      <button type="primary" form-type="submit">提交</button>
+      <button type="primary" form-type="reset">清空</button>
+    </view>
+  </form>
+</view>

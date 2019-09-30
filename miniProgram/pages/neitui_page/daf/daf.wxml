@@ -1,0 +1,30 @@
+<!--miniprogram/pages/daf/daf.wxml-->
+<view class="container">
+  <picker range="{{company}}" value="{{index}}" bindchange="getnow">按公司筛选</picker>
+  <text>\n</text>
+  <view class="widge">
+    <text class="column">公司</text>
+    <text class="column">介绍</text>
+    <text class="column">发布者</text>
+    <text class="link-column">操作</text>
+  </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for="{{nowlist}}">
+        <view class="widget">
+          <view>
+            <text class="column">{{item.company}}</text>
+            <text class="column">{{item.introduce}}</text>
+            <text class="column">{{item.publisher_id}}</text>
+            <view class="link-column">
+              <text class="link" bindtap="look" data-neituiid="{{item._id}}" data-company="{{item.company}}" data-introduce="{{item.introduce}}" data-img="{{item.img_path}}">查看</text>|
+              <text class="link" bindtap="updateNeitui" data-neituiid="{{item._id}}" data-company="{{item.company}}" data-introduce="{{item.introduce}}" data-img="{{item.img_path}}">编辑</text>|
+              <text class="link" bindtap="deleteNeitui" data-neituiid="{{item._id}}" data-index="{{index}}">删除</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <button type="primary" bindtap="addNeitui">添加内推信息</button>
+</view>

@@ -17,7 +17,12 @@
     "pages/advertisement/search_advertisement/search_advertisement",
     "pages/advertisement/advertisement",
     "pages/advertisement/advertisement_index/advertisement_index",
-    "pages/advertisement/advertisement_mylist/advertisement_mylist"
+    "pages/advertisement/advertisement_mylist/advertisement_mylist",
+    "pages/neitui_page/add/add",
+    "pages/neitui_page/daf/daf",
+    "pages/neitui_page/index/index",
+    "pages/neitui_page/look/look",
+    "pages/neitui_page/update/update"
   ],
   "window": {
     "backgroundTextStyle": "light",
