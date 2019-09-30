@@ -1,0 +1,82 @@
+<!--index.wxml-->
+<button bindtap="tochaxun">点击跳转到查询页</button>
+<view style="font-size:x-large;text-align:center;margin-top:10px;margin-bottom:10px">请输入您要上传房屋的信息</view>
+<view style="margin-top:10px;margin-bottom:10px;font-size:large">请选择房屋所在的位置:</view>
+<view>
+<radio-group bindchange="radioChange">
+    <label  wx:for="{{items}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+</radio-group>
+</view>
+
+<view style="margin-top:10px;margin-bottom:10px;font-size:large">请选择房屋的类型:</view>
+<radio-group bindchange="roomChange">
+    <label  wx:for="{{rooms}}">
+        <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+</radio-group>
+
+<view class="inputview" style="margin-left:5px">
+    <view>请输入提交的备注：
+        <input class="inputtext" name="rent" placeholder="备注(独卫暖气洗衣机等)）"
+        bindinput="inputbeizhu"/>
+      </view>
+     
+</view>
+
+<view class="inputview" style="margin-left:5px">
+    <view>请输入房屋面积：
+        <input class="inputtext" name="rent" placeholder="15"
+        bindinput="inputarea"/>
+      </view>
+      <view class="viewName" style="background-color:#fbf9fe">
+      
+    </view>
+</view>
+
+
+<view class="inputview">
+    <view>请输入您的电话：
+        <input class="inputtext" name="rent" placeholder=""
+        bindinput="inputtele"/>
+      </view>
+      <view class="viewName" style="background-color:#fbf9fe">
+      
+    </view>
+</view>
+
+
+<view class="inputview">
+    <view>请输入房租：
+        <input class="inputtext" name="rent" placeholder="请输入房租"
+        bindinput ="rentinput"/>
+      </view>
+      <view class="viewName" style="background-color:#fbf9fe">
+    </view>
+</view>
+
+   <!-- 选择图片 -->
+<view style="margin-top:10px;margin-bottom:10px;font-size:large">请选择您要上传的图片:</view>
+
+<view class='up-pic'>
+    <view class='flex pic-box'>
+          <block wx:key="imgbox" wx:for="{{imgbox}}">
+              <view class='ap-box'>
+                <view class='add-pic'>
+                  <image class='add-pic' src='{{item}}'></image>
+                  <view class='img-de' data-deindex='{{index}}' bindtap='imgDelete1'>
+                    <image class='img-de' src='/pages/renthouse/images/chenghao.png'></image>   
+                  </view>
+                </view>
+              </view>
+          </block>
+            <view class='add-pic' bindtap='addPic1' wx:if="{{imgbox.length<9}}">
+              <image class='img' style=" border-radius: 40px" src='/pages/renthouse/images/jiahao.png'></image>
+            </view>
+    </view>
+</view>
+
+<button type="default" size="large" style="margin-top:40px;align-items:center" bindtap="submit">上传您的信息</button>
+
+
