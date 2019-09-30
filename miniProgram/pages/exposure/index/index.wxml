@@ -16,7 +16,7 @@
   <view class="divLine"></view>
 <!-- 留言列表  -->
   <view class='list-view'>
-    <view class='item' wx:for="{{queryResult}}" >
+    <view class='item' wx:for="{{queryResult}}" wx:key="{{index}}" >
       <view style="height:70px">
         <text >{{item}}</text>
         
