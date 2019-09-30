@@ -61,20 +61,12 @@ Page({
    * 查看是否已经授权
    */
   chackAuth() {
-    wx.getSetting({
-      success: function(res) {
-        // 查看是否授权
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: function(res) {
-              app.globalData.avatarUrl = res.userInfo.avatarUrl,
-                app.globalData.nickName = res.userInfo.nickName,
-                app.globalData.isLogin = true
-            }
-          })
-        }
-      }
+    this.setData({
+      avatarUrl: app.globalData.avatarUrl,
+      nickName: app.globalData.nickName, 
+      isLogin: app.globalData.isLogin
     })
+
   },
 
 
