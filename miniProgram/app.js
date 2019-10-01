@@ -29,6 +29,24 @@ App({
                 that.globalData.isLogin = true
             }
           })
+          wx.login({
+            success: function (res) {
+              wx.showLoading({ title: 'Loading...' })
+              wx.request({
+                url: 'http://localhost:8088/openid',
+                data: {
+                  code: res.code
+                },
+                method: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                  console.log(res)
+                  that.globalData.openId = res.data.openid
+                },
+                complete: wx.hideLoading
+              })
+            }
+          })
         }
       }
     })
@@ -39,10 +57,9 @@ App({
       env: 'cloudpg-v0ty3',
       traceuser: true
     })
-
     // 授权？获取数据：什么都不干
     // 如果已经授权，说明用户已经同意获取信息，就把当前用户信息存到全局的文件里，方便以后调用
     this.chackAuth()
-
-  },
+    
+  }
 })

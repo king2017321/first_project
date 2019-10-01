@@ -40,19 +40,7 @@ Page({
         isLogin: true
       })
 
-      wx.login({
-        success: function(res) {
-          console.log(res)
-          fetch('/openid', {
-            code: res.code
-          }).then(res => {
-            console.log(res)
-            app.globalData.openId = res.data.openid
-          }).catch(e => {
-            console.log("登录成功: ", e)
-          })
-        }
-      })
+      
     }
 
   },

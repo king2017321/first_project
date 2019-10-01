@@ -1,6 +1,6 @@
 // pages/sell/sell.js
 const fetch = require('../../../utils/fetch')
-
+const app = getApp()
 Page({
 
   /**
@@ -81,20 +81,21 @@ Page({
 
 
     e.detail.value['images'] = this.data.files
-    e.detail.value['userId'] = 123
+    e.detail.value['userId'] = app.globalData.openId
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     fetch("/buy/record/add", e.detail.value, "POST").then(res => wx.showToast({
-    title: '上传成功', //提示文字
-     duration: 2000, //显示时长
-     mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
-     icon: 'success', //图标，支持"success"、"loading"  
+      title: '上传成功', //提示文字
+      duration: 2000, //显示时长
+      mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+      icon: 'success', //图标，支持"success"、"loading"  
     }))
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    //fetch("/buy/record/add", this.data.uploadData, "POST").then(res => console.log(res.data))
+
   },
 
   /**

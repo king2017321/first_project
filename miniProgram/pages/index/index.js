@@ -1,4 +1,4 @@
-const fetch = require('../../utils/fetch')
+const app = getApp()
 
 Page({
   /**
@@ -30,5 +30,5 @@ url: '/pages/exposure/index/index' },
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 8 },
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 9 }
     ]
-  },
+  }
 })

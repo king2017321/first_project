@@ -1,5 +1,5 @@
 const fetch = require('../../../utils/fetch')
-
+const app = getApp()
 
 Page({
 
@@ -63,20 +63,32 @@ Page({
     this.setData({
       category: options.category
     })
-
-    this.loadMore()
+    if (options.category == 'buy') {
+      this.loadMore()
+    } else {
+      fetch('/sell/records', {
+        userId: app.globalData.openId
+      }).then(res => {
+        console.log(res)
+        this.setData({
+          items: res.data,
+        })
+      })
+    }
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.setData({
-      items: [],
-      pageIndex: 0,
-      hasMore: true
-    })
-    this.loadMore().then(() => wx.stopPullDownRefresh())
+    if(this.data=='buy'){
+      this.setData({
+        items: [],
+        pageIndex: 0,
+        hasMore: true
+      })
+      this.loadMore().then(() => wx.stopPullDownRefresh())
+    }
   },
 
   /**
