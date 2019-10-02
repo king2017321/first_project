@@ -6,10 +6,19 @@
     overflow: hidden;
     margin-bottom: 10rpx;
 }
-.user_title image{
+.user_title .avator{
     overflow: hidden;
     flex:1;
 }
+.user_title .setting{
+    position: absolute;
+    top:15rpx;
+    right:15rpx;
+    float: right;
+    width:55rpx;
+    height: 55rpx;
+}
+
 .user_title h1{
     padding: 20rpx;
     color: #fff;

@@ -1,13 +1,17 @@
 <view class="user_detail">
     <!-- 头像及名称 -->
     <view class="user_title">
-        <image class="avator"  mode='widthFix' src="{{avatarUrl}}"></image>
+        <image class="avator"  mode='widthFix' src="{{avatarUrl}}"/>
+         <navigator class="" url="/pages/user/edit_person_info/edit_person_info" >
+            <image class="setting" src="../../../assets/setting.png"/>
+        </navigator>
         <h1 class="nickname">{{nickName}}</h1>
     </view>
-    <!-- 个性信息 -->
-    <view class="personal_info">
 
+    <!-- 个性信息,待补充-->
+    <view class="personal_info">
     </view>
+
     <!-- 详细信息 -->
     <view class="detail_info">
         <view class="text_warp">
@@ -15,16 +19,24 @@
             <text>{{nickName}}</text>
         </view>
         <view class="text_warp">
+            <text class="lable">信用分</text>
+            <text>{{credit}}</text>
+        </view>
+        <view class="text_warp">
             <text class="lable">性别</text>
             <text>{{gender==1?"男":"女"}}</text>
         </view>
         <view class="text_warp">
-            <text class="lable">国家</text>
-            <text>{{country?country:"保密"}}</text>
+            <text class="lable">地址</text>
+            <text>{{address?address:"保密"}}</text>
         </view>
         <view class="text_warp">
-            <text class="lable">城市</text>
-            <text>{{province?province:"保密"}}</text>
+            <text class="lable">电话</text>
+            <text>{{phone?phone:"保密"}}</text>
+        </view>
+        <view class="text_warp">
+            <text class="lable">个人简介</text>
+            <text>{{desc?desc:"暂无"}}</text>
         </view>
     
     </view>

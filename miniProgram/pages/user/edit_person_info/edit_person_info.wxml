@@ -1,0 +1,25 @@
+<view class="person_info_wrap">
+    <view class="detail_info">
+        <view class="text_warp">
+            <text class="lable">昵称</text>
+            <input bindblur="bindHideNickname" value="{{nickName}}" />
+        </view>
+        <view class="text_warp">
+            <text class="lable">性别</text>
+            <input bindblur="bindHideGender" value="{{gender==1?'男':'女'}}" />
+        </view>
+        <view class="text_warp">
+            <text class="lable">地址</text>
+            <input bindblur="bindHideAddress" value="{{address?address:'保密'}}" />
+        </view>
+        <view class="text_warp">
+            <text class="lable">电话</text>
+            <input bindblur="bindHidePhone" value="{{phone?phone:'保密'}}" />
+        </view>
+        <view class="text_warp">
+            <text class="lable">个人简介</text>
+            <input bindblur="bindHideDesc" value="{{desc?desc:'暂无'}}" />
+        </view>
+    </view>
+    <button bindtap="handleSumit" class="save_info" type="primary">保存</button>
+</view>

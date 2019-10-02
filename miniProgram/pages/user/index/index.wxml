@@ -25,7 +25,7 @@
             </view>
             <!-- 详情 -->
             <view class="more">
-                <image class="more_logo" src="../../../logo/right.png"></image>
+                <image class="more_logo" src="../../../assets/right.png"></image>
             </view> 
         </navigator>
 
@@ -39,7 +39,7 @@
                 {{item.title}}
             </view>
             <view class="more">
-                <image class="more_logo" src="../../../logo/right.png"></image>
+                <image class="more_logo" src="../../../assets/right.png"></image>
             </view> 
         </navigator>
     </view>

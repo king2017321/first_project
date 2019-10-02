@@ -33,6 +33,25 @@ Page({
   clickLogin(e) {
     console.log(e)
     if (e.detail.errMsg == "getUserInfo:ok") {
+      // 同意的话就是愿意公开信息，那么久直接存到数据库，一遍发布模块可以快速填充,也是编辑个人信息可行(保存到数据库才能保存更改的内容)
+      const db = wx.cloud.database()
+      const local_auth = db.collection('local_auth')
+      local_auth.add({
+        data:{
+          address:e.detail.userInfo.country+","+e.detail.userInfo.province+","+e.detail.city,
+          avatar_url:e.detail.userInfo.avatarUrl,
+          credit:0,
+          desc:"",
+          gender:e.detail.userInfo.gender,
+          nick_name:e.detail.userInfo.nickName,
+          phone:""
+        },
+        success(res) {
+
+          console.log("add_info",res)
+        }
+      })
+      // 精简版用来填充简介页面
       this.setData({
         avatarUrl: e.detail.userInfo.avatarUrl,
         nickName: e.detail.userInfo.nickName,

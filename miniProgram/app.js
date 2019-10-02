@@ -13,11 +13,23 @@ App({
     openId: ''
   },
 
-  /**
-   * 查看是否已经授权
-   */
-  chackAuth() {
+/**
+ * 查看是否已经授权
+ */
+chackAuth() {
     var that = this
+    // 业务逻辑改动 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    const db = wx.cloud.database()
+    const local_auth = db.collection('local_auth')
+    // 用云函数的方法吧openid获取下来
+    var openId
+    wx.cloud.callFunction({
+      name: 'getOpenId',
+      success(res){
+        openId = res.result.openid
+      }
+    })
+    
     wx.getSetting({
       success(res) {
         // 查看是否授权
@@ -27,8 +39,11 @@ App({
               that.globalData.avatarUrl = res.userInfo.avatarUrl,
                 that.globalData.nickName = res.userInfo.nickName,
                 that.globalData.isLogin = true
+                // 可云开发获取也可后端获取。这里在签，可以被后端获取的覆盖掉，无影响
+                that.globalData.openId = openId
             }
           })
+
           wx.login({
             success: function (res) {
               wx.showLoading({ title: 'Loading...' })

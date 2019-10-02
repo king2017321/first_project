@@ -1,22 +1,21 @@
-// pages/user_detial/user_detial.js
-const app = getApp();
-
+// pages/user/edit_person_info/edit_person_info.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    id:"",
+    // 不变的，但要一起提交
     avatarUrl:"",
+    credit:"",
+    // ^^^^^
     address:"",
     desc:"",
     gender:0,
-    credit:0,
     nickName:"",
     phone:""
   },
-
-
   /**
    * 载入详情
    */
@@ -27,14 +26,14 @@ Page({
     const openId = wx.cloud.callFunction({
       name: 'getOpenId',
     })
-    // globaldata只存储简略版个人信息
     local_auth.where({"_openid":openId}).get({
       success(res){
-        console.log(res)
+        console.log("获取",res)
         that.setData({
+          id:res.data[0]._id,
           avatarUrl:res.data[0].avatar_url,
-          address:res.data[0].address,
           credit:res.data[0].credit,
+          address:res.data[0].address,
           gender:res.data[0].gender,
           nickName:res.data[0].nick_name,
           phone:res.data[0].phone,
@@ -42,28 +41,75 @@ Page({
         })
       }
     })
-
-
-        // 旧模式
-    // wx.getUserInfo({
-    //   success(res){
-    //     that.setData({
-    //       avatarUrl:res.userInfo.avatarUrl,
-    //       city:res.userInfo.city,
-    //       country:res.userInfo.country,
-    //       gender:res.userInfo.gender,
-    //       language:res.userInfo.language,
-    //       nickName:res.userInfo.nickName,
-    //       province:res.userInfo.province
-    //     })
-    //   }
-    // })
   },
+  /**
+   * 获取input修改值
+   */
+  bindHideNickname(e){
+    var nick_name = e.detail.value
+    this.setData({
+      nickName : nick_name
+    })
+  },
+  bindHideGender(e){
+    var gender = e.detail.value
+    if(gender=="男"){
+      gender = 1
+    }else if(gender=="女"){
+      gender = 2
+    }
+    this.setData({
+      gender : gender
+    })
+  },
+  bindHideAddress(e){
+    var address = e.detail.value
+    this.setData({
+      address : address
+    })
+  },
+  bindHidePhone(e){
+    var phone = e.detail.value
+    this.setData({
+      phone : phone
+    })
+  },
+  bindHideDesc(e){
+    var desc = e.detail.value
+    this.setData({
+      desc : desc
+    })
+  },
+  /**
+   * 保存修改
+   */
+  handleSumit(){
+    var that = this
+    const db = wx.cloud.database()
+    const local_auth = db.collection('local_auth')
+    // const openId = wx.cloud.callFunction({
+    //   name: 'getOpenId',
+    // })
+
+    local_auth.doc(that.data.id).set({
+      data:{
+        avatar_url:that.data.avatarUrl,
+        credit:that.data.credit,
+        address:that.data.address,
+        desc:that.data.desc,
+        gender:that.data.gender,
+        nick_name:that.data.nickName,
+        phone:that.data.phone
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 加载当前个人信息
     this.loadDetail()
   },
 

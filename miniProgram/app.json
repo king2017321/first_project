@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/user/comment/comment",
     "pages/user/mine/mine",
+    "pages/user/edit_person_info/edit_person_info",
     "pages/user/user_detial/user_detial",
     "pages/user/index/index",
     "pages/exposure/index/index",

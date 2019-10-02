@@ -1,0 +1,22 @@
+.detial_info{
+    width:100%;
+}
+.text_warp{
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom:  0.1rpx solid rgb(189, 189, 189);
+}
+.lable{
+    font-size: 28rpx;
+    color: #666;
+}
+.save_info{
+    width:80%;
+    margin:auto;
+    margin-top:20rpx;
+}
+
+
