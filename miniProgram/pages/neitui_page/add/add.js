@@ -80,8 +80,7 @@ Page({
         this.setData({
           openid:res.result.openid
         })
-        cp = this.data.openid + '.png';
-        console.log(cp);
+        cp = formData.company + formData.introduce + this.data.openid + '.png';
         if (formData.company == "" || formData.introduce == "") {
           wx.showModal({
             title: '提示',
@@ -89,14 +88,11 @@ Page({
           });
         }
         else {
-          wx.cloud.deleteFile({
-            fileList: [this.data.img_url]
-          });
           if (that.data.img != '') {
             wx.cloud.uploadFile({
+              cloudPath: cp,
               filePath: that.data.img,
               success: res => {
-                // get resource ID
                 that.setData({
                   img_url: res.fileID,
                 });
@@ -114,9 +110,6 @@ Page({
                     })
                   }
                 });
-              },
-              fail: err => {
-                // handle error
               }
             });
           }

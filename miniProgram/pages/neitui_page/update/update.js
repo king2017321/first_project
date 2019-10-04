@@ -92,16 +92,9 @@ Page({
 
   formSubmit: function (e){
     var that = this;
-    var now = new Date();
     var ii = wx.getStorageSync('updateid');
     var formData = e.detail.value;
-    var year = now.setFullYear();
-    var month = now.getMonth();
-    var date = now.getDate;
-    var hour = now.getHours();
-    var minu = now.getMinutes();
-    var sec = now.getSeconds();
-    var cp = this.data.neituiId+year+month+date+hour+minu+sec+'.png';
+    var cp = formData.company + formData.introduce + ii +'.png';
     wx.cloud.deleteFile({
       fileList: [this.data.img_url],
       success: res => {
