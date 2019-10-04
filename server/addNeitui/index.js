@@ -10,11 +10,13 @@ exports.main = async (event, context) => {
   const company = event.company
   const introduce = event.introduce
   const img_path = event.img_path
+  const openid =event.openid
   await db.collection('Neitui').add({
     data:{
       company: company,
       introduce: introduce,
-      img_path: img_path
+      img_path: img_path,
+      openid: openid
     }
   })
   return {

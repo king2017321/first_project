@@ -7,6 +7,7 @@ Page({
   data: {
     img_url: '',
     img: '',
+    openid: ''
   },
 
   /**
@@ -71,44 +72,62 @@ Page({
     var now = new Date();
     var ii = wx.getStorageSync('updateid');
     var formData = e.detail.value;
-    var year = now.setFullYear();
-    var month = now.getMonth();
-    var date = now.getDate;
-    var hour = now.getHours();
-    var minu = now.getMinutes();
-    var sec = now.getSeconds();
-    var cp = this.data.neituiId + year + month + date + hour + minu + sec + '.png';
-    if (formData.company == "" || formData.introduce == ""){
-      wx.showModal({
-        title: '提示',
-        content: '信息填写不完整',
-      })
-    }
-    else{
-      wx.cloud.deleteFile({
-        fileList: [this.data.img_url],
-        success: res => {
-          // handle success
-        },
-        fail: err => {
-          // handle error
+    var cp;
+    wx.cloud.callFunction({
+      name:'getOpenId',
+      data:{},
+      success: res => {
+        this.setData({
+          openid:res.result.openid
+        })
+        cp = this.data.openid + '.png';
+        console.log(cp);
+        if (formData.company == "" || formData.introduce == "") {
+          wx.showModal({
+            title: '提示',
+            content: '信息填写不完整',
+          });
         }
-      });
-      if (that.data.img != ''){
-        wx.cloud.uploadFile({
-          cloudPath: cp,
-          filePath: that.data.img,
-          success: res => {
-          // get resource ID
-            that.setData({
-              img_url: res.fileID,
+        else {
+          wx.cloud.deleteFile({
+            fileList: [this.data.img_url]
+          });
+          if (that.data.img != '') {
+            wx.cloud.uploadFile({
+              filePath: that.data.img,
+              success: res => {
+                // get resource ID
+                that.setData({
+                  img_url: res.fileID,
+                });
+                wx.cloud.callFunction({
+                  name: 'addNeitui',
+                  data: {
+                    company: formData.company,
+                    introduce: formData.introduce,
+                    img_path: this.data.img_url,
+                    openid: this.data.openid
+                  },
+                  success: function (res) {
+                    wx.navigateTo({
+                      url: '../daf/daf',
+                    })
+                  }
+                });
+              },
+              fail: err => {
+                // handle error
+              }
             });
+          }
+          else {
             wx.cloud.callFunction({
               name: 'addNeitui',
               data: {
                 company: formData.company,
                 introduce: formData.introduce,
-                img_path: this.data.img_url
+                img_path: '',
+                openid: this.data.openid
               },
               success: function (res) {
                 wx.navigateTo({
@@ -116,28 +135,10 @@ Page({
                 })
               }
             });
-          },
-          fail: err => {
-            // handle error
-          }
-        });
+          };
+        }
       }
-      else{
-        wx.cloud.callFunction({
-          name: 'addNeitui',
-          data: {
-            company: formData.company,
-            introduce: formData.introduce,
-            img_path: ''
-          },
-          success: function (res) {
-            wx.navigateTo({
-              url: '../daf/daf',
-            })
-          }
-        });
-      }
-    }
+    });
   },
 
   addimg: function () {

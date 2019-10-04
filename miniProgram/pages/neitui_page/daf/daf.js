@@ -105,29 +105,43 @@ Page({
   },
 
   deleteNeitui: function(e) {
-    var that = this;
-    var ii = e.target.dataset.neituiid;
-    wx.showModal({
-      title: '提示',
-      content: '确定要删除吗？',
-      success: function(sm){
-        if(sm.confirm){
-          wx.cloud.callFunction({
-            name:'deleteNeitui',
-            data: {neituiId: ii},
-            success: function(res){
-              var toastText = "删除成功！";
-              that.data.list.splice(e.target.dataset.index, 1);
-              that.setData({
-                list: that.data.list,
-                nowlist: that.data.list
-              });
-              wx.showToast({
-                title: toastText,
-                icon: '',
-                duration: 2000
-              });
+    wx.cloud.callFunction({
+      name: 'getOpenId',
+      data: {},
+      success: res => {
+        if (e.target.dataset.openid == res.result.openid) {
+          var that = this;
+          var ii = e.target.dataset.neituiid;
+          wx.showModal({
+            title: '提示',
+            content: '确定要删除吗？',
+            success: function (sm) {
+              if (sm.confirm) {
+                wx.cloud.callFunction({
+                  name: 'deleteNeitui',
+                  data: { neituiId: ii },
+                  success: function (res) {
+                    var toastText = "删除成功！";
+                    that.data.list.splice(e.target.dataset.index, 1);
+                    that.setData({
+                      list: that.data.list,
+                      nowlist: that.data.list
+                    });
+                    wx.showToast({
+                      title: toastText,
+                      icon: '',
+                      duration: 2000
+                    });
+                  }
+                })
+              }
             }
+          })
+        }
+        else {
+          wx.showModal({
+            title: '提示',
+            content: '您无权更改此条信息',
           })
         }
       }
@@ -141,14 +155,28 @@ Page({
   },
 
   updateNeitui: function(e) {
-    var that = this;
-    var ii = e.target.dataset.neituiid;
-    wx.setStorageSync('updateid', ii);
-    wx.setStorageSync('company', e.target.dataset.company);
-    wx.setStorageSync('introduce', e.target.dataset.introduce);
-    wx.setStorageSync('img_path', e.target.dataset.img);
-    wx.navigateTo({
-      url: "../update/update",
+    wx.cloud.callFunction({
+      name:'getOpenId',
+      data:{},
+      success:res=>{
+        if (e.target.dataset.openid == res.result.openid){
+          var that = this;
+          var ii = e.target.dataset.neituiid;
+          wx.setStorageSync('updateid', ii);
+          wx.setStorageSync('company', e.target.dataset.company);
+          wx.setStorageSync('introduce', e.target.dataset.introduce);
+          wx.setStorageSync('img_path', e.target.dataset.img);
+          wx.navigateTo({
+            url: "../update/update",
+          })
+        }
+        else{
+          wx.showModal({
+            title: '提示',
+            content: '您无权更改此条信息',
+          })
+        }
+      }
     })
   },
 
