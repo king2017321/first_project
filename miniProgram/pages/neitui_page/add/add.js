@@ -67,6 +67,12 @@ Page({
   },
 
   formSubmit: function (e) {
+    var user = '';
+    wx.getUserInfo({
+      success(res){
+        user = res.userInfo.nickName
+      }
+    });
     var that = this;
     var formData = e.detail.value;
     var now = new Date();
@@ -102,7 +108,8 @@ Page({
                     company: formData.company,
                     introduce: formData.introduce,
                     img_path: this.data.img_url,
-                    openid: this.data.openid
+                    openid: this.data.openid,
+                    user: user
                   },
                   success: function (res) {
                     wx.navigateTo({
