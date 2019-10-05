@@ -25,7 +25,7 @@ Page({
        { icon: '/assets/second-hand-transactions.png', name: '租房', url:'/pages/renthouse/index/index' },
        { icon: '/assets/second-hand-transactions.png', name: '曝光', 
 url: '/pages/exposure/index/index' },
-       { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 6 },
+       { icon: '/assets/second-hand-transactions.png', name: '失物招领',url: '/pages/shiwuzhaoling/104/104'},
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 7 },
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 8 },
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 9 }

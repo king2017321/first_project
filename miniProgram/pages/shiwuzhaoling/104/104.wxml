@@ -1,0 +1,27 @@
+<!--miniprogram/pages/daf/daf.wxml-->
+<view class="container">
+
+  <text>\n</text>
+  <view class="widge">
+    <text class="column">失物</text>
+    <text class="column">丢失地点</text>
+    <text class="link-column">具体信息</text>
+  </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for="{{nowlist}}">
+        <view class="widget">
+          <view>
+            <text class="column">{{item.company}}</text>
+            <text class="column">{{item.place}}</text>
+            <view class="link-column">
+
+            <text class="link" bindtap="look" data-swid="{{item._id}}" data-company="{{item.company}}" data-introduce="{{item.introduce}}" data-img="{{item.img_path}}">详情</text>|
+          </view>
+         </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <button type="primary" bindtap="addsw">添加信息</button>
+</view>

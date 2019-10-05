@@ -1,0 +1,20 @@
+<view>
+  <view class="post-container">
+      <view class="post-author-date">
+         <image src="{{toux}}"/>
+         <text>{{date}}</text>
+      </view> 
+      <text class="post-title">丢失物品：{{company}}</text> 
+       <image class="post-image" mode='aspectFill' src="{{img}}"/>
+
+     
+      <text class="post-content">介绍：{{introduce}}
+      </text>
+</view>
+</view>
+
+
+  
+
+
+
