@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/user/other_user/other_user",
     "pages/user/comment/comment",
     "pages/user/mine/mine",
     "pages/user/edit_person_info/edit_person_info",

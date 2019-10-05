@@ -1,13 +1,15 @@
 // pages/mine/mine.js
 import { formatTime } from '../../../utils/util.js';
 var getDate = formatTime(new Date());
+var openId;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tradeList:[]
+    tradeList:[],
+    trade_with_id:""
   },
 
   /**
@@ -19,7 +21,10 @@ Page({
     // 1. 获取数据库引用
     const db = wx.cloud.database()
     const trade_info = db.collection('trade_info')
-    trade_info.get({
+
+    trade_info.where({
+      _openid:openId
+    }).get({
       success: function(res) {
         that.setData({
           tradeList:res.data.reverse()
@@ -83,10 +88,16 @@ Page({
     // 云开发方法
     const db = wx.cloud.database()
     const add_trade_info = db.collection('trade_info')
+    var that = this
+
+    
     add_trade_info.add({
       data:{
+        // _openid:""
         date:getDate,
-        trade_with:'ring'
+        trade_with:'ring',
+        // 待修改;获取别的对象的id
+        trade_with_id:openId
       },
       success(res) {
         console.log("add_info",res)
@@ -108,6 +119,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 1.给全局的openid赋值,毕竟经常用
+    wx.cloud.callFunction({
+      name: 'getOpenId',
+      success(res){
+        openId = res.result.openid
+      }
+    })
+    // 2.获取交易信息
     this.getTradeList()
   },
 
