@@ -1,5 +1,7 @@
 <view class="comment_wrap">
-    <navigator class="comment_content" wx:for="{{comment_data}}" wx:key="{{index}}">
+    <navigator class="comment_content" 
+    url="../other_user/other_user?id={{item.rely_id}}"
+    wx:for="{{comment_data}}" wx:key="{{index}}">
         <!-- 左部，头像 -->
         <view class="avatar_wrap">
             <image class="avatar" src="{{item.avatarUrl}}"/>

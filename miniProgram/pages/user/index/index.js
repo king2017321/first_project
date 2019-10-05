@@ -1,6 +1,9 @@
 // pages/user/user.js
 const fetch = require('../../../utils/fetch')
 const app = getApp()
+var openId = app.globalData.openId
+// 判断是否授权过.有时候会重复授权，一人多表。。不行
+var isExist
 Page({
 
   /**
@@ -31,26 +34,27 @@ Page({
    * 点击登录
    */
   clickLogin(e) {
-    console.log(e)
     if (e.detail.errMsg == "getUserInfo:ok") {
       // 同意的话就是愿意公开信息，那么久直接存到数据库，一遍发布模块可以快速填充,也是编辑个人信息可行(保存到数据库才能保存更改的内容)
       const db = wx.cloud.database()
       const local_auth = db.collection('local_auth')
-      local_auth.add({
-        data:{
-          address:e.detail.userInfo.country+","+e.detail.userInfo.province+","+e.detail.city,
-          avatar_url:e.detail.userInfo.avatarUrl,
-          credit:0,
-          desc:"",
-          gender:e.detail.userInfo.gender,
-          nick_name:e.detail.userInfo.nickName,
-          phone:""
-        },
-        success(res) {
-
-          console.log("add_info",res)
-        }
-      })
+      console.log("isExist:",isExist)
+      if(isExist==0){
+        local_auth.add({
+          data:{
+            address:e.detail.userInfo.country+","+e.detail.userInfo.province+","+e.detail.city,
+            avatar_url:e.detail.userInfo.avatarUrl,
+            credit:0,
+            desc:"",
+            gender:e.detail.userInfo.gender,
+            nick_name:e.detail.userInfo.nickName,
+            phone:""
+          },
+          success(res) {
+            console.log("add_info",res)
+          }
+        })
+      }
       // 精简版用来填充简介页面
       this.setData({
         avatarUrl: e.detail.userInfo.avatarUrl,
@@ -58,8 +62,6 @@ Page({
         // islogin 不应该在这
         isLogin: true
       })
-
-      
     }
 
   },
@@ -81,6 +83,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // 1.给全局的openid赋值，毕竟经常用
+    wx.cloud.callFunction({
+      name: 'getOpenId',
+      success(res){
+        openId = res.result.openid
+      }
+    })
+    // 2.判断是否授权过
+    const db = wx.cloud.database()
+    const local_auth = db.collection('local_auth')
+    local_auth.where({
+      _openid: openId,
+    }).get({
+      success(res){
+        isExist = res.data.length
+      }
+    })
+    // 3.
     this.chackAuth()
   },
 

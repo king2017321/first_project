@@ -28,15 +28,15 @@
         </view>
         <view class="text_warp">
             <text class="lable">地址</text>
-            <text>{{address?address:"保密"}}</text>
+            <text>{{address?address:" "}}</text>
         </view>
         <view class="text_warp">
             <text class="lable">电话</text>
-            <text>{{phone?phone:"保密"}}</text>
+            <text>{{phone?phone:" "}}</text>
         </view>
         <view class="text_warp">
             <text class="lable">个人简介</text>
-            <text>{{desc?desc:"暂无"}}</text>
+            <text>{{desc?desc:" "}}</text>
         </view>
     
     </view>

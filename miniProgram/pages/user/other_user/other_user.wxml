@@ -1,0 +1,65 @@
+<view class="content">
+    <!-- 上部是简介 -->
+    <view class="user_info">
+        <!-- part.1 头像昵称信息 -->
+        <view class="basic_info">
+            <view class="avatar">
+                <image class="avatar_img" src="{{avatarUrl}}"/>
+            </view>
+            <view class="title_info">
+                <h1 class="nickname">{{nickName}}</h1>
+                <text class="gender">{{gender==1?"男":"女"}}</text>
+                <text class="credit">信用分:{{credit}}</text>
+            </view>
+            <view class="to_follow">
+                <button class="follow_button" type="primary">关注</button>
+            </view>
+        </view>
+        <!-- part.2 描述信息 -->    
+        <view class="detail_info">
+            <navigator class="desc">{{desc?desc:"什么都没有"}}</navigator>
+        </view>
+        <!-- part.3 点赞，关注信息 -->
+        <view class="feedback">
+            <text class="like">点赞:1</text>
+            <text class="follow">关注:5</text>
+        </view>
+    </view>
+
+    <!-- 下部是动态,评价,他的等-->
+    <view class="board">
+        <!-- 导航栏 -->
+         <view class="nav">
+            <view bindtap="activeNav" data-index="{{index}}" 
+            class="nav_item {{index===currentIndex?'active':''}}" 
+            wx:for="{{navList}}" wx:key="{{index}}">
+            {{item}}
+            </view>
+        </view>
+        <!-- 动态 -->
+        <navigator class="list_item"
+        url="./other_user?id={{item.trade_with_id}}"
+        hidden="{{currentIndex==0?false:true}}"
+        wx:for="{{mineList}}" wx:key="{{item.id}}">
+            <text>交易时间:{{item.date}}</text>
+            <text>交易对象:{{item.trade_with}}</text>
+            <text>交易id:{{item._id}}</text>
+        </navigator>
+        <!-- 评论 -->
+        <navigator class="comment_content" 
+        url="./other_user?id={{item.rely_id}}"
+        hidden="{{currentIndex==1?false:true}}"
+        wx:for="{{commentList}}" wx:key="{{index}}">
+            <!-- 左部，头像 -->
+            <view class="avatar_wrap">
+                <image class="avatar" src="{{item.avatarUrl}}"/>
+            </view>
+            <!-- 右部，信息 -->
+            <view class="comment_info">
+                <text class="username">{{item.username}}</text>
+                <text class="comment_text">{{item.commentText}}</text>
+                <text class="comment_date">{{item.date}}</text>
+            </view>
+        </navigator>
+    </view>
+</view>
