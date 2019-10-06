@@ -1,0 +1,112 @@
+<!--pages/search/search.wxml-->
+<text>pages/search/search.wxml</text>
+<view class="search page_row"/>  
+
+
+
+<view class="container">
+
+<form bindsubmit="submitsearch">
+
+
+<view class="page-body">
+<view  class="page-section">
+主题
+ <view class="textarea-wrp">
+   <input auto-focus="true"
+   bindinput="bindTitleInput"
+   name="title" value="{{title}}"
+   />
+    </view>
+   </view>
+   </view>
+<!--date-->
+<view  class="section">
+  <picker mode="date" value="{{begindate}}" name="begindate" start="2019-01-01" end="2025-12-31" bindchange="bindBegindateChange"> 
+  <view class="picker">
+  日期：起始{{begindate}}
+</view>
+</picker>
+  <picker mode="date" value="{{enddate}}"  name="enddate" start="2019-01-01" end="2025-12-31" bindchange="bindEnddateChange"> 
+  <view class="picker">
+  中止{{enddate}}
+</view>
+</picker>
+
+</view >
+
+<!--week-->
+<view class="section">
+ <picker  name="week" bindchange="bindWeekChange"  
+value="{{week}}"
+range="{{weekArray}}">
+
+    <view class="picker">
+  星期：{{weekArray[week]}}
+</view>
+</picker>
+</view>
+
+<!--aim-->
+<view class="page-body">
+<view  class="page-section">
+内容
+ <view class="textarea-wrp">
+   <textarea auto-focus="true"
+   bindblur="bindAimtextAreaBlur"
+   name="aim"
+   style="height: 3em"/>
+    </view>
+   </view>
+   </view>
+
+
+ <!-- <view class="sectionButton">
+    <!-- tips:如果使用type标签，会使hover—class效果失效 --
+    >
+    </view>
+    --> 
+    
+   <button class="refresh" bindtap="btn" hover-class="submit-active" form-type="submit">search</button>
+
+   <scroll-view scroll-y="true">
+  <view>
+    <block wx:for="{{searchPart}}" wx:key="{{searchPart}}">
+    <text> 主题： {{item.title}}</text>
+    <text>\n</text>
+    <text> 时间： {{item.begintime}}————{{item.endtime}}</text>
+    <text>\n</text>
+    <text > 日期： {{item.begindate}}——{{item.enddate}}</text>
+    <text>\n</text>
+
+    <text> 内容：{{item.aim}}</text>
+
+
+
+      </block>
+  </view>
+  </scroll-view>
+  
+
+</form>
+</view >
+
+
+<!--
+  <input class="df_1" placeholder="请输入你有搜索的内容" value="{{searchValue}}" bindinput="searchValueInput" />  
+  <button bindtap="suo" data-id='1'>  
+    媒婆  
+  </button>  
+  <button bindtap="suo" data-id='2'>  
+    单身  
+  </button>  
+</view>  
+<view class="search_no" wx:if="{{!centent_Show}}">  
+  <text>很抱歉,没有找到您要搜索的资料/(ㄒoㄒ)/~~</text>  
+</view> 
+
+
+<import src="../index/card/card.wxml" />  
+<template is="nanshen_card" data="{{nanshen_card,img}}" /> 
+
+-->
