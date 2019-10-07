@@ -22,8 +22,8 @@ Page({
    */
   loadDetail(){
     var that = this
-    const db = wx.cloud.database()
     // globaldata只存储简略版个人信息
+    const db = wx.cloud.database()
     const local_auth = db.collection('local_auth')
     local_auth.where({
       _openid: openId,

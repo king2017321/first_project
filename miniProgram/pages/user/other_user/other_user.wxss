@@ -4,6 +4,7 @@
 .user_info{
     display: flex;
     flex-direction: column;
+    background-color: #fff;
 }
 .basic_info{
     display: flex;
@@ -49,18 +50,21 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
+    background-color: #fff;
 }
 .nav_item{
     flex:1;
     padding: 20rpx 45rpx;
     font-size: 30rpx;
     text-align: center;
+    border: 0.1rpx solid #666;
 }
 .nav_item.active{
     border-bottom: 5rpx solid #05bd29;
 }
 /* 动态 */
 .mine_list{
+    background-color: #fff;
     width: 100%;
 }
 .list_item{
@@ -73,6 +77,7 @@
 }
 /* 评论 */
 .comment_content{
+    background-color: #fff;
     display:flex;
     padding:10rpx;
     height: 130rpx;

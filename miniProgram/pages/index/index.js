@@ -26,6 +26,8 @@ Page({
        { icon: '/assets/second-hand-transactions.png', name: '曝光', 
 url: '/pages/exposure/index/index' },
        { icon: '/assets/second-hand-transactions.png', name: '失物招领',url: '/pages/shiwuzhaoling/104/104'},
+       { icon: '/assets/second-hand-transactions.png', name: 'assemble_用户?ring也不知道', url: '/pages/assemble/usermain/usermain' },
+       { icon: '/assets/second-hand-transactions.png', name: 'assemble_管理员?ring也不知道', url: '/pages/assemble/adminmain/adminmain' },
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 7 },
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 8 },
        { icon: '/assets/second-hand-transactions.png', name: 'XX', category_id: 9 }
