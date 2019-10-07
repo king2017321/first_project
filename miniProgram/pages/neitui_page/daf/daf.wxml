@@ -26,5 +26,8 @@
       </block>
     </view>
   </scroll-view>
+  <text>\n</text>
   <button type="primary" bindtap="addNeitui">添加内推信息</button>
+  <text>\n</text>
+  <button type="primary" bindtap="myNeitui">我的内推信息</button>
 </view>

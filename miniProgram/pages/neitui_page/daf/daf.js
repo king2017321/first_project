@@ -210,5 +210,25 @@ Page({
     wx.navigateTo({
       url: "../look/look",
     })
+  },
+
+  myNeitui:function(e){
+    wx.cloud.callFunction({
+      name: 'getOpenId',
+      data: {},
+      success: res=>{
+        var t = res.result.openid;
+        var kk = [];
+        var zz = this.data.list;
+        for (var i = 0; i < zz.length; i++) {
+          if (zz[i].openid == t) {
+            kk.push(zz[i]);
+          }
+        };
+        this.setData({
+          nowlist: kk,
+        });
+      }
+    })
   }
 })
