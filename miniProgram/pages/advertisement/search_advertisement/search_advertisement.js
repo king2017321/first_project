@@ -12,7 +12,10 @@ Page({
     input_value:"",
     hasmore: true,
     number: 0,//剩余记录条数
-    skipnum: 0//跳过条数
+    skipnum1: 0,//跳过条数
+    skipnum2:0,
+    skipnum3:0,
+    has:0
   },
   //查看详情
   viewItem: function (event) {
@@ -26,7 +29,6 @@ Page({
     this.setData({
       input_value: e.detail.value
     })
-    console.log(this.data.input_value)
   },
   //提交查询
   formSubmit: function (e) {
@@ -37,54 +39,123 @@ Page({
       title: {
         $regex: '.*' + that.data.input_value,
         $options: 'i'
-      },
-      who: {
-        $regex: '.*' + that.data.input_value,
-        $options: 'i'
-      },
-      brief_description: {
-        $regex: '.*' + that.data.input_value,
-        $options: 'i'
       }
     }).count({
       success:res=>{
-        that.setData({
-          number:res.total
+        console.log(res.total)
+        if(res.total>0){
+          that.setData({
+            has:1
+          })
+        }
+        //查询作者
+        db.collection("advertisement").where({
+          who: {
+            $regex: '.*' + that.data.input_value,
+            $options: 'i'
+          }
+        }).count({
+          success: res => {
+            console.log(res.total)
+            if (res.total > 0) {
+              that.setData({
+                has: 1
+              })
+            }
+
+            //查询简介
+            db.collection("advertisement").where({
+              brief_description: {
+                $regex: '.*' + that.data.input_value,
+                $options: 'i'
+              }
+            }).count({
+              success: res => {
+                console.log(res.total)
+                if (res.total > 0) {
+                  that.setData({
+                    has: 1
+                  })
+                }
+                //开始显示查询
+                if (this.data.has == 0) {
+                  wx.showToast({
+                    title: '没有找到你想要的结果',
+                  })
+                }
+                else {
+                  console.log("y")
+                  //得到查询
+                  var list = []
+                  //查询title
+                  db.collection("advertisement").where({
+                    title: {
+                      $regex: '.*' + that.data.input_value,
+                      $options: 'i'
+                    }
+                  })
+                    .limit(15)
+                    .get({
+                      success: res => {
+                        list = list.concat(res.data)
+                        console.log(res.data)
+                        console.log(list)
+                        that.setData({
+                          number: that.data.number - 15,
+                          skipnum1: 15 + that.data.skipnum1
+                        })
+
+                        //查询作者
+                        db.collection("advertisement").where({
+                          who: {
+                            $regex: '.*' + that.data.input_value,
+                            $options: 'i'
+                          },
+                        })
+                          .limit(15)
+                          .get({
+                            success: res => {
+                              list = list.concat(res.data)
+                              console.log(list)
+                              that.setData({
+                                number: that.data.number - 15,
+                                skipnum2: 15 + that.data.skipnum2
+                              })
+
+                              //查询文本
+                              db.collection("advertisement").where({
+                                brief_description: {
+                                  $regex: '.*' + that.data.input_value,
+                                  $options: 'i'
+                                }
+                              })
+                                .limit(15)
+                                .get({
+                                  success: res => {
+                                    list = list.concat(res.data)
+                                    console.log(list)
+                                    //  var tlist = new Set(list)
+                                    console.log(tlist)
+                                    that.setData({
+                                      list: list,
+                                      number: that.data.number - 15,
+                                      skipnum3: 15 + that.data.skipnum3
+                                    })
+                                    console.log(list)
+                                  }
+                                })
+                            }
+                          })
+                      }
+                    })
+                }
+              }
+            })
+          }
         })
       }
     })
-    if(that.data.number<=0){
-      wx.showToast({
-        title: '没有找到你想要的结果',
-      })
-    }
-    else{
-    //得到查询
-    db.collection("advertisement").where({
-      title: {
-        $regex: '.*' + that.data.input_value,
-        $options: 'i'
-      },
-      who: {
-        $regex: '.*' + that.data.input_value,
-        $options: 'i'
-      },
-      brief_description: {
-        $regex: '.*' + that.data.input_value,
-        $options: 'i'
-      }
-    })
-    .limit(15)
-    .get({
-      success: res => {
-        that.setData({
-          list: res.data,
-          number:that.data.number-15,
-          skipnum:15+that.data.skipnum
-        })
-      }
-    });
-  }
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -133,40 +204,79 @@ Page({
    */
   onReachBottom: function () {
     var that = this
-    if(that.data.number<=0){
-      that.setData({
-        hasmore:false
-      })
-      wx.showToast({
-        title: '没有更多了',
-      })
-    }
-    else{
+    // if(that.data.number<=0){
+    //   that.setData({
+    //     hasmore:false
+    //   })
+    //   wx.showToast({
+    //     title: '没有更多了',
+    //   })
+    // }
+    
+    console.log("y")
+    //得到查询
+    var tlist = new Set()
+    var list = []
+    //查询title
     db.collection("advertisement").where({
       title: {
         $regex: '.*' + that.data.input_value,
         $options: 'i'
-      },
-      who: {
-        $regex: '.*' + that.data.input_value,
-        $options: 'i'
-      },
-      brief_description: {
-        $regex: '.*' + that.data.input_value,
-        $options: 'i'
       }
-    }).skip(skipnum)
+    }).skip(skipnum1)
       .limit(15)
       .get({
         success: res => {
+          list = list.concat(res.data)
+          console.log(res.data)
+          console.log(list)
           that.setData({
-            list: res.data,
             number: that.data.number - 15,
-            skipnum:that.data.skipnum+15
+            skipnum1: 15 + that.data.skipnum1
           })
+
+          //查询作者
+          db.collection("advertisement").where({
+            who: {
+              $regex: '.*' + that.data.input_value,
+              $options: 'i'
+            },
+          }).skip(skipnum2)
+            .limit(15)
+            .get({
+              success: res => {
+                list = list.concat(res.data)
+                console.log(list)
+                that.setData({
+                  number: that.data.number - 15,
+                  skipnum2: 15 + that.data.skipnum2
+                })
+
+                //查询文本
+                db.collection("advertisement").where({
+                  brief_description: {
+                    $regex: '.*' + that.data.input_value,
+                    $options: 'i'
+                  }
+                }).skip(skipnum3)
+                  .limit(15)
+                  .get({
+                    success: res => {
+                      list = list.concat(res.data)
+                      console.log(list)
+                      that.setData({
+                        list: list,
+                        number: that.data.number - 15,
+                        skipnum3: 15 + that.data.skipnum3
+                      })
+                      console.log(list)
+                    }
+                  })
+              }
+            })
         }
-      });
-  }
+      })
+  
   },
 
   /**

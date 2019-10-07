@@ -34,6 +34,7 @@ Page({
       }
     })
     db.collection("advertisement")
+      .where({})
       .limit(15)
       .get({
         success: res => {
@@ -42,6 +43,8 @@ Page({
             skipnum: 15,
             number: this.data.number - 15
           })
+          console.log(res.data)
+          console.log(this.data.list)
         }
       })
   },

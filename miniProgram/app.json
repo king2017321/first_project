@@ -31,7 +31,8 @@
     "pages/neitui_page/daf/daf",
     "pages/neitui_page/index/index",
     "pages/neitui_page/look/look",
-    "pages/neitui_page/update/update"
+    "pages/neitui_page/update/update",
+    "pages/advertisement/advertisement_edit/advertisement_edit"
   ],
   "window": {
     "backgroundTextStyle": "light",

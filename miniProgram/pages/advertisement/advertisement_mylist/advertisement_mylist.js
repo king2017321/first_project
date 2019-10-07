@@ -21,40 +21,56 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    //获取用户信息
-    //怎样得到用户的openid
-    db.collection("advertisement").count({
-      success: res => {
-        console.log(res.total)
+    //异步操作
+    wx.cloud.callFunction({
+      name:'getOpenId',
+      success:res=>{
         that.setData({
-          number: res.total
+          openid: res.result.openid
         })
-        if (number <= 0) {
-          that.setData({
-            hasmore: false
+        console.log(that.data.openid)
+        //获取广告条数
+        db.collection("advertisement")
+          .where({
+            _openid: that.data.openid
           })
-        }
+          .count({
+            success: res => {
+              console.log(res.total)
+              that.setData({
+                number: res.total
+              })
+              if (number <= 0) {
+                that.setData({
+                  hasmore: false
+                })
+              }
+            }
+          })
+          //获取广告
+        db.collection("advertisement")
+          .where({
+            //用openid匹配
+            _openid: that.data.openid
+          })
+          .limit(15)
+          .get({
+            success: res => {
+              this.setData({
+                list: res.data,
+                skipnum: 15,
+                number: this.data.number - 15
+              })
+            }
+          })
       }
     })
-    db.collection("advertisement").where({
-      //用openid匹配
-    })
-      .limit(15)
-      .get({
-        success: res => {
-          this.setData({
-            list: res.data,
-            skipnum: 15,
-            number: this.data.number - 15
-          })
-        }
-      })
   },
-  viewItem: function (event) {
+  edit: function (event) {
     var id = event.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '/pages/advertisement/advertisement_detail/advertisement_detail?id=' + id,
+      url: '/pages/advertisement/advertisement_edit/advertisement_edit?id=' + id,
     })
   },
   turn: function (event) {

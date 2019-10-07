@@ -116,15 +116,28 @@ Page({
         
         return
       }
+      //图片文件数大于0，开始递归上传图片
       if(files.length>0){
+        var upfiles = this.data.imageID
+        //用时间戳命名
+        let timestamp = (new Date()).valueOf();
         wx.cloud.uploadFile({
-          cloudPath: files[e].match(/\.[^.]+?$/)[0],
+          cloudPath: timestamp+'.png',
           filePath: files[e],
           success :res =>{
             console.log("y")
-            this.data.imageID.push(res.fileID)
+            console.log(res.fileID)
+            upfiles.push(res.fileID)
+            this.setData({
+            imageID:  upfiles
+            })
             e = e + 1
             this.uploadding(e)
+          },
+          fail :res=>{
+            wx.showToast({
+              title: '上传失败',
+            })
           }
         })
       }
