@@ -10,7 +10,7 @@
     </van-cell>
   </van-tab>
   <van-tab title="我出售的">
-    <van-cell wx:for="{{recordSell}}" wx:key="key" title="{{item.title}}" size="large" use-label-slot="true" link-type="navigateTo" url="/pages/second_hand_transaction/detail/detail?id={{item.id}}" is-link>
+    <van-cell wx:for="{{recordSell}}" wx:key="key" title="{{item.title}}" size="large" use-label-slot="true" link-type="navigateTo" url="/pages/second_hand_transaction/update/update?id={{item.id}}" is-link>
       <view slot="label">
         <view class="van-cell-text">{{item.brief_description}}</view>
         <image wx:for="{{item.images}}" wx:key="key" class="image" src="{{item}}" mode="aspectFill" />
@@ -29,27 +29,12 @@
       </van-cell-group>
 
       <van-cell-group title="简短描述">
-        <van-field label="留言" type="textarea " placeholder="请输入留言 " name="brief_description" autosize/>
+        <van-field label="描述" type="textarea " placeholder="请输入一段简短的描述 " name="brief_description" autosize/>
       </van-cell-group>
 
       <van-cell-group title="图片">
-        <view class='up-pic'>
-          <view class='flex pic-box'>
-            <block wx:key="imgbox" wx:for="{{imgbox}}">
-              <view class='ap-box'>
-                <view class='add-pic'>
-                  <image class='add-pic' src='{{item}}'></image>
-                  <view class='img-de' data-deindex='{{index}}' bindtap='imgDelete1'>
-                    <image class='img-de' src='/pages/renthouse/images/chenghao.png'></image>
-                  </view>
-                </view>
-              </view>
-            </block>
-            <view class='add-pic' bindtap='addPic1' wx:if="{{imgbox.length<9}}">
-              <image class='img' style=" border-radius: 40px" src='/pages/renthouse/images/jiahao.png'></image>
-            </view>
-          </view>
-        </view>
+        <include src="/includes/uploader" />
+        <include src="/includes/button" />
       </van-cell-group>
 
     </form>
@@ -57,5 +42,5 @@
 </van-tabs>
 <view wx:if="{{active==0}}">
   <view wx:if="{{hasMore}} " class="loadmore loading ">正在加载...</view>
-  <view wx:else class="loadmore ">没有更多内容了</view>
+  <view wx:else class="loadmore">没有更多内容了</view>
 </view>

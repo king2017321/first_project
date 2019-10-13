@@ -1,6 +1,7 @@
 // pages/sell/sell.js
 const fetch = require('../../../utils/fetch')
 const app = getApp()
+
 Page({
 
   /**
@@ -8,17 +9,9 @@ Page({
    */
   data: {
     files: [],
-    uploadData: {
-      briefDescription: "上传测试",
-      images: [],
-      phone: "13087228384",
-      price: 11.12,
-      qq: "13087228384",
-      title: "WTF",
-      wx: "13087228384",
-      userId: 123
-    }
+    good: {}
   },
+
   chooseImage: function(e) {
     var that = this;
     console.log(this.data.files.length);
@@ -82,20 +75,36 @@ Page({
 
     e.detail.value['images'] = this.data.files
     e.detail.value['userId'] = app.globalData.openId
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    fetch("/buy/record/add", e.detail.value, "POST").then(res => wx.showToast({
-      title: '上传成功', //提示文字
-      duration: 2000, //显示时长
-      mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
-      icon: 'success', //图标，支持"success"、"loading"  
-    }))
+    console.log('Update 更新：', e.detail.value)
+    // fetch("/record/update", e.detail.value, "POST").then(res => wx.showToast({
+    //   title: '上传成功', //提示文字
+    //   duration: 2000, //显示时长
+    //   mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+    //   icon: 'success', //图标，支持"success"、"loading"  
+    // }))
 
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
 
+  deleteRecord: function() {
+    fetch(`/record/${this.data.good.id}`, {}, 'DELETE')
+      .then(res => wx.showToast({
+        title: '删除成功', //提示文字
+        duration: 2000, //显示时长
+        mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+        icon: 'success', //图标，支持"success"、"loading"  
+      })).then(res => wx.redirectTo({
+        url: '/pages/second_hand_transaction/index/index'
+      }))
+  },
+
+  onLoad: function(options) {
+    fetch(`/record/${options.id}`)
+      .then(res => {
+        this.setData({
+          good: res.data,
+          files: res.data.images
+        })
+      })
   },
 
   /**
