@@ -72,16 +72,18 @@ Page({
     //   });
     // }
 
-
+    e.detail.value['id'] = this.data.good.id
     e.detail.value['images'] = this.data.files
-    e.detail.value['userId'] = app.globalData.openId
+    e.detail.value['user_id'] = app.globalData.openId
     console.log('Update 更新：', e.detail.value)
-    // fetch("/record/update", e.detail.value, "POST").then(res => wx.showToast({
-    //   title: '上传成功', //提示文字
-    //   duration: 2000, //显示时长
-    //   mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
-    //   icon: 'success', //图标，支持"success"、"loading"  
-    // }))
+    fetch("/record/update", e.detail.value, "POST").then(res => wx.showToast({
+      title: '上传成功', //提示文字
+      duration: 2000, //显示时长
+      mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+      icon: 'success', //图标，支持"success"、"loading"  
+    })).then(res => wx.redirectTo({
+      url: '/pages/second_hand_transaction/index/index?active=1'
+    }))
 
   },
 
@@ -93,7 +95,7 @@ Page({
         mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
         icon: 'success', //图标，支持"success"、"loading"  
       })).then(res => wx.redirectTo({
-        url: '/pages/second_hand_transaction/index/index'
+        url: '/pages/second_hand_transaction/index/index?active=1'
       }))
   },
 

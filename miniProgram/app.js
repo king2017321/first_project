@@ -3,7 +3,7 @@
 App({
   //const cloud = require('wx-server-sdk')
   config: {
-    apiBase: 'http://localhost:8088'
+    apiBase: 'http://47.112.27.55:8088'
   },
 
   globalData: {
@@ -48,7 +48,7 @@ chackAuth() {
             success: function (res) {
               wx.showLoading({ title: 'Loading...' })
               wx.request({
-                url: 'http://localhost:8088/openid',
+                url: 'http://47.112.27.55:8088/openid',
                 data: {
                   code: res.code
                 },
