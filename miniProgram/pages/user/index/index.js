@@ -1,7 +1,6 @@
 // pages/user/user.js
 const fetch = require('../../../utils/fetch')
 const app = getApp()
-var openId = app.globalData.openId
 // 判断是否授权过.有时候会重复授权，一人多表。。不行
 var isExist
 Page({
@@ -83,20 +82,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // const OPENID = app.globalData.openId
+    let OPENID = ""
     // 1.给全局的openid赋值，毕竟经常用
     wx.cloud.callFunction({
       name: 'getOpenId',
       success(res){
-        openId = res.result.openid
+        OPENID = res.result.openid
+        console.log("get openid",OPENID)
       }
     })
     // 2.判断是否授权过
+    console.log(OPENID)
     const db = wx.cloud.database()
     const local_auth = db.collection('local_auth')
     local_auth.where({
-      _openid: openId,
+      _openid: OPENID,
     }).get({
       success(res){
+        console.log("openid",OPENID,"Exist",res)
         isExist = res.data.length
       }
     })

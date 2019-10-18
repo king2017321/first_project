@@ -19,6 +19,13 @@ Page({
     commentList:[],
   },
 
+  //点击曝光
+  onExporsure(){
+    wx.navigateTo({
+      url: '/pages/exposure/index/index',
+    })
+  },
+
   // 点击导航
   activeNav(e){
     this.setData({
