@@ -1,7 +1,7 @@
 // pages/mine/mine.js
 import { formatTime } from '../../../utils/util.js';
 var getDate = formatTime(new Date());
-var openId;
+const app = getApp();
 Page({
 
   /**
@@ -21,9 +21,9 @@ Page({
     // 1. 获取数据库引用
     const db = wx.cloud.database()
     const trade_info = db.collection('trade_info')
-
+    const OPENID = app.globalData.openId
     trade_info.where({
-      _openid:openId
+      _openid: OPENID
     }).get({
       success: function(res) {
         that.setData({
@@ -64,20 +64,6 @@ Page({
         that.getTradeList()
       }
     })
-    
-
-
-    // 后端服务器的方法
-    // wx.request({
-    //   url: 'http://localhost:8080/user/info/delete_trade_with_id?id='+id,
-    //   success(res){
-    //     console.log(res)
-    //     that.setData({
-    //       tradeList:res.data
-    //     })
-    //   }
-    // })
-
   },
 
 
@@ -86,10 +72,10 @@ Page({
    */
   addItem(){
     // 云开发方法
+    var that = this
     const db = wx.cloud.database()
     const add_trade_info = db.collection('trade_info')
-    var that = this
-
+    const OPENID = app.globalData.openId
     
     add_trade_info.add({
       data:{
@@ -97,7 +83,7 @@ Page({
         date:getDate,
         trade_with:'ring',
         // 待修改;获取别的对象的id
-        trade_with_id:openId
+        trade_with_id:OPENID
       },
       success(res) {
         console.log("add_info",res)
@@ -120,12 +106,12 @@ Page({
    */
   onLoad: function (options) {
     // 1.给全局的openid赋值,毕竟经常用
-    wx.cloud.callFunction({
-      name: 'getOpenId',
-      success(res){
-        openId = res.result.openid
-      }
-    })
+    // wx.cloud.callFunction({
+    //   name: 'getOpenId',
+    //   success(res){
+    //     openId = res.result.openid
+    //   }
+    // })
     // 2.获取交易信息
     this.getTradeList()
   },

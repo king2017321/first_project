@@ -1,6 +1,5 @@
 // pages/user_detial/user_detial.js
 const app = getApp();
-var openId
 Page({
 
   /**
@@ -23,10 +22,11 @@ Page({
   loadDetail(){
     var that = this
     // globaldata只存储简略版个人信息
+    const OPENID = app.globalData.openId
     const db = wx.cloud.database()
     const local_auth = db.collection('local_auth')
     local_auth.where({
-      _openid: openId,
+      _openid: OPENID,
     }).get({
       success(res){
         console.log(res)
@@ -47,9 +47,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 1.给全局的openid赋值，毕竟经常用
-    openId  = app.globalData.openId
-    // 2
     this.loadDetail()
   },
 

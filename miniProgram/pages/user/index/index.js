@@ -24,9 +24,9 @@ Page({
     ],
 
 
-    isLogin: false,
     avatarUrl: "",
-    nickname: "",
+    nickName: "",
+    isLogin: ""
   },
 
   /**
@@ -74,7 +74,6 @@ Page({
       nickName: app.globalData.nickName, 
       isLogin: app.globalData.isLogin
     })
-
   },
 
 
@@ -82,16 +81,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // const OPENID = app.globalData.openId
-    let OPENID = ""
-    // 1.给全局的openid赋值，毕竟经常用
-    wx.cloud.callFunction({
-      name: 'getOpenId',
-      success(res){
-        OPENID = res.result.openid
-        console.log("get openid",OPENID)
-      }
-    })
+    //1.
+    this.chackAuth()
+    // 再这个函数直接获取存在全局的openid，避免玄学异步
+    const OPENID = app.globalData.openId
     // 2.判断是否授权过
     console.log(OPENID)
     const db = wx.cloud.database()
@@ -104,8 +97,6 @@ Page({
         isExist = res.data.length
       }
     })
-    // 3.
-    this.chackAuth()
   },
 
   /**

@@ -99,6 +99,7 @@ Page({
    */
   onLoad: function (options) {
     console.log("查看用户:",options.id)
+    // 传入的id即为openid
     openId = options.id
     // 1.载入信息
     this.loadUserInfo()
