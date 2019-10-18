@@ -98,7 +98,7 @@ Page({
                     .get({
                       success: res => {
                         list = list.concat(res.data)
-                        console.log(res.data)
+                        //console.log(res.data)
                         console.log(list)
                         that.setData({
                           number: that.data.number - 15,
@@ -135,13 +135,14 @@ Page({
                                     list = list.concat(res.data)
                                     console.log(list)
                                     //  var tlist = new Set(list)
-                                    console.log(tlist)
+                                    //console.log(tlist)
                                     that.setData({
                                       list: list,
                                       number: that.data.number - 15,
                                       skipnum3: 15 + that.data.skipnum3
                                     })
                                     console.log(list)
+                                    console.log(that.data.list)
                                   }
                                 })
                             }
@@ -215,15 +216,15 @@ Page({
     
     console.log("y")
     //得到查询
-    var tlist = new Set()
-    var list = []
+    //var tlist = new Set()
+    var list = this.data.list
     //查询title
     db.collection("advertisement").where({
       title: {
         $regex: '.*' + that.data.input_value,
         $options: 'i'
       }
-    }).skip(skipnum1)
+    }).skip(this.data.skipnum1)
       .limit(15)
       .get({
         success: res => {
@@ -241,7 +242,7 @@ Page({
               $regex: '.*' + that.data.input_value,
               $options: 'i'
             },
-          }).skip(skipnum2)
+          }).skip(this.data.skipnum2)
             .limit(15)
             .get({
               success: res => {
@@ -258,7 +259,7 @@ Page({
                     $regex: '.*' + that.data.input_value,
                     $options: 'i'
                   }
-                }).skip(skipnum3)
+                }).skip(this.data.skipnum3)
                   .limit(15)
                   .get({
                     success: res => {

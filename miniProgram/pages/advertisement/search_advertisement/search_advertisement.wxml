@@ -27,8 +27,3 @@ desc="{{item.brief_description}}"
   </view>
 </van-card>
 </view>
-<view class="page__link"style="position:width:750rpx">
-<navigator url="/pages/publish_advertisement/publish_advertisement">
-<button class="weui-btn" form-type="submit"type="primary">发布</button>
-</navigator>
-</view>

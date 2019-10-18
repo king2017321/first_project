@@ -8,17 +8,17 @@ Page({
   data: {
     slides: [{
       "link": "/xx",
-      "image": "/assets/avatar.png"
+      "image": "/assets/da.png"
     },
     {
       "link": "/xx",
-      "image": "/assets/avatar.png"
+      "image": "/assets/guang.png"
     }, {
       "link": "/xx",
-      "image": "/assets/avatar.png"
+      "image": "/assets/gao.png"
     }, {
       "link": "/xx",
-      "image": "/assets/avatar.png"
+      "image": "/assets/horse.jpg"
     }
     ]
   },

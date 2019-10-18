@@ -1,1 +1,124 @@
 /* pages/advertisement/advertisement_detail/advertisement_detail.wxss */
+/* .center{
+  margin: 10px 5px 10px 16px;
+  width: 250px;
+  border-width: 3px;
+  border-radius: 50%;
+  padding: 1px 1px 1px 1px ;
+  text-align: center;
+} */
+.content{
+
+}
+.user_info{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+.basic_info{
+    display: flex;
+    justify-content: space-between;
+    margin:20rpx;
+}
+.avatar{
+    flex:3;
+}
+.avatar image{
+    width:100%;
+    height: 80px;
+}
+.title_info{
+    margin-left:20rpx;
+    display: flex;
+    flex:7;
+    justify-content: left;
+    flex-direction: column;
+}
+.to_follow{
+    display: flex;
+    flex:3;
+    align-items: center;
+}
+.detail_info{
+    margin: 20rpx;
+}
+.desc{
+
+}
+.feedback{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20rpx;
+    justify-content: space-between;
+    width:30%;
+}
+.board{
+}
+.nav{
+    padding: 5rpx 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    background-color: #fff;
+}
+.nav_item{
+    flex:1;
+    padding: 20rpx 45rpx;
+    font-size: 30rpx;
+    text-align: center;
+    border: 0.1rpx solid #666;
+}
+.nav_item.active{
+    border-bottom: 5rpx solid #05bd29;
+}
+/* 动态 */
+.mine_list{
+    background-color: #fff;
+    width: 100%;
+}
+.list_item{
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom:  0.1rpx solid rgb(189, 189, 189);
+}
+/* 评论 */
+.comment_content{
+    background-color: #fff;
+    display:flex;
+    padding:10rpx;
+    height: 130rpx;
+    border-bottom:  0.1rpx solid rgb(189, 189, 189);
+    justify-content: space-around;
+}
+.comment_content .avatar_wrap{
+    display: flex;
+    flex:2;
+    justify-content: center;
+    align-items: center;
+}
+.comment_content .avatar{
+    width:100%;
+    height: 90%;
+}
+.comment_info{
+    display: flex;
+    flex:8;
+ 
+    margin-left:20rpx;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.username{
+    font-size:28rpx;
+    color:#6666;
+}
+.comment_text{
+    font-size:40rpx;
+}
+.comment_date{
+    font-size:28rpx;
+    color:#6666;
+}

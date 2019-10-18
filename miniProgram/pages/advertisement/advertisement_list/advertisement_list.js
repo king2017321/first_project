@@ -34,7 +34,6 @@ Page({
       }
     })
     db.collection("advertisement")
-      .where({})
       .limit(15)
       .get({
         success: res => {

@@ -16,7 +16,7 @@
  </form>
 </view> 
 <view wx:for = "{{list}}">
-<van-card
+<van-card wx:if="{{item.length!=0}}"
 desc="{{item.brief_description}}"
   title="{{item.title}}"
   thumb="{{item.imageID[0]}}"

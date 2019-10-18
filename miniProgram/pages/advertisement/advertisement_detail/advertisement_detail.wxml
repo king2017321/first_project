@@ -1,9 +1,36 @@
 <!--pages/advertisement/advertisement_detail/advertisement_detail.wxml-->
-<text class="weui-title" style="font-size:40px">{{list.title}}\n</text>
-<text class="who" style="color:#21a675">发布：{{list.who}}\n</text>
-<text class = "des" style="font-size:20px">{{list.brief_description}}\n</text>
-<view style = "float:none;width:100%;flex-direction:row-reverse">
-<view  wx:for="{{list.imageID}}" >
-<image src="{{item}}" mode="aspectFill" style="width:100%"></image>
+<view class="content">
+            <!-- 上部是简介 -->
+    <view class="user_info">
+        <!-- part.1 头像昵称信息 -->
+        <view class="basic_info">
+            <view class="avatar">
+                <image class="avatar_img" src="{{avatarUrl}}"/>
+            </view>
+            <view class="title_info">
+                <h1 class="nickname">{{nickName}}</h1>
+                <text class="gender"></text>
+                <text class="credit"></text>
+            </view>
+            <view class="to_follow">
+            </view>
+        </view>
+        <!-- part.2 描述信息 -->    
+        <view class="detail_info">
+        </view>
+        <!-- part.3 点赞，关注信息 -->
+        <view class="feedback">
+            <text class="like"></text>
+            <text class="follow"></text>
+        </view>
+    </view>
+<van-panel title="{{list.title}}" desc="{{list.who}}" use-footer-slot>
+  <view >{{list.brief_description}}</view>
+  <view slot="footer">
+    <view  wx:for="{{list.imageID}}" >
+<image src="{{item}}" mode="aspectFit" style="width:100%"></image>
 </view>
+  </view>
+</van-panel>
 </view>
+
