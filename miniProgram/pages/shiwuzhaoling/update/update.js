@@ -1,4 +1,4 @@
-// miniprogram/pages/update/update.js
+// miniprogram/pages/add/add.js
 Page({
 
   /**
@@ -7,6 +7,7 @@ Page({
   data: {
     swId: '',
     company: '',
+    place:'',
     introduce: '',
     img_url: '',
     img: '',
@@ -17,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var ii = wx.getStorageSync('swid');
+    var ii = wx.getStorageSync('updateid');
     var company = wx.getStorageSync('company');
     var place = wx.getStorageSync('place');
     var introduce = wx.getStorageSync('introduce');
@@ -94,16 +95,9 @@ Page({
 
   formSubmit: function (e) {
     var that = this;
-    var now = new Date();
     var ii = wx.getStorageSync('updateid');
     var formData = e.detail.value;
-    var year = now.setFullYear();
-    var month = now.getMonth();
-    var date = now.getDate;
-    var hour = now.getHours();
-    var minu = now.getMinutes();
-    var sec = now.getSeconds();
-    var cp = this.data.neituiId + year + month + date + hour + minu + sec + '.png';
+    var cp = formData.company + formData.introduce + formData.place + ii +'.png';
     wx.cloud.deleteFile({
       fileList: [this.data.img_url],
       success: res => {
@@ -131,10 +125,11 @@ Page({
             img_url: res.fileID,
           })
           wx.cloud.callFunction({
-            name: 'updateNeitui',
+            name: 'updateSw',
             data: {
-              neituiId: ii,
+              swId: ii,
               company: formData.company,
+              place: formData.place,
               introduce: formData.introduce,
               img_path: this.data.img_url
             },

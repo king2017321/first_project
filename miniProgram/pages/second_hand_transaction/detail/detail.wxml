@@ -12,6 +12,6 @@
   <view class="hours" wx:if="{{good.price}}">价格: {{good.price}}</view>
 </view>
 
-<view class="introduction" wx:if="{{good.briefDescription}}">
-  <text>{{good.briefDescription}}</text>
+<view class="introduction" wx:if="{{good.brief_description}}">
+  <text>{{good.brief_description}}</text>
 </view>

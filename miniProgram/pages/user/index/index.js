@@ -1,7 +1,6 @@
 // pages/user/user.js
 const fetch = require('../../../utils/fetch')
 const app = getApp()
-var openId = app.globalData.openId
 // 判断是否授权过.有时候会重复授权，一人多表。。不行
 var isExist
 Page({
@@ -25,9 +24,9 @@ Page({
     ],
 
 
-    isLogin: false,
     avatarUrl: "",
-    nickname: "",
+    nickName: "",
+    isLogin: ""
   },
 
   /**
@@ -75,7 +74,6 @@ Page({
       nickName: app.globalData.nickName, 
       isLogin: app.globalData.isLogin
     })
-
   },
 
 
@@ -83,25 +81,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 1.给全局的openid赋值，毕竟经常用
-    wx.cloud.callFunction({
-      name: 'getOpenId',
-      success(res){
-        openId = res.result.openid
-      }
-    })
+    //1.
+    this.chackAuth()
+    // 再这个函数直接获取存在全局的openid，避免玄学异步
+    const OPENID = app.globalData.openId
     // 2.判断是否授权过
+    console.log(OPENID)
     const db = wx.cloud.database()
     const local_auth = db.collection('local_auth')
     local_auth.where({
-      _openid: openId,
+      _openid: OPENID,
     }).get({
       success(res){
+        console.log("openid",OPENID,"Exist",res)
         isExist = res.data.length
       }
     })
-    // 3.
-    this.chackAuth()
   },
 
   /**

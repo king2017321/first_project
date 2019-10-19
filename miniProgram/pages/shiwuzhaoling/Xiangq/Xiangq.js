@@ -1,9 +1,8 @@
 Page({
   data: {
-    date: "Oct 8 2019",
-    toux: "/swImg/9.jpg",
-    neituiId: '',
-    place:'',
+
+    swId: '',
+    place: '',
     company: '',
     introduce: '',
     img_url: '',
@@ -16,7 +15,7 @@ Page({
   onLoad: function (options) {
 
     var that = this;
-    var ii = wx.getStorageSync('swid');
+    var ii = wx.getStorageSync('updateid');
     var place = wx.getStorageSync('place');
     var company = wx.getStorageSync('company');
     var introduce = wx.getStorageSync('introduce');
@@ -38,7 +37,7 @@ Page({
       company: company,
       introduce: introduce,
       img_url: img_path,
-      place:place
+      place: place
     })
   },
 

@@ -1,7 +1,0 @@
-<!--pages/sell/sell.wxml-->
-
-<form bindsubmit="formSubmit">
-  <include src="/includes/input" />
-  <include src="/includes/uploader" />
-  <include src="/includes/button" />
-</form>

@@ -16,8 +16,7 @@
     "pages/assemble/user/user",
     "pages/assemble/usermain/usermain",
     "pages/second_hand_transaction/index/index",
-    "pages/second_hand_transaction/sell/sell",
-    "pages/second_hand_transaction/list/list",
+    "pages/second_hand_transaction/update/update",
     "pages/second_hand_transaction/detail/detail",
     "pages/advertisement/advertisement_list/advertisement_list",
     "pages/advertisement/publish_advertisement/publish_advertisement",
@@ -32,7 +31,12 @@
     "pages/neitui_page/index/index",
     "pages/neitui_page/look/look",
     "pages/neitui_page/update/update",
-    "pages/advertisement/advertisement_edit/advertisement_edit"
+    "pages/advertisement/advertisement_edit/advertisement_edit",
+    "pages/shiwuzhaoling/Xiangq/Xiangq",
+    "pages/shiwuzhaoling/104/104",
+    "pages/shiwuzhaoling/add/add",
+    "pages/shiwuzhaoling/myInfo/myInfo",
+    "pages/shiwuzhaoling/update/update"
   ],
   "window": {
     "backgroundTextStyle": "light",

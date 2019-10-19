@@ -1,0 +1,22 @@
+<!--pages/sell/sell.wxml-->
+<form bindsubmit="formSubmit">
+  <van-cell-group title="基本信息">
+    <van-field label="标题" value="{{good.title}}" name="title" />
+    <van-field label="手机号" value="{{good.phone}}" name="phone" />
+    <van-field label="微信号" value="{{good.wx}}" name="wx" />
+    <van-field label="秋秋号" value="{{good.qq}} " name="qq" />
+    <van-field label="价格" value="{{good.price}}" name="price" />
+  </van-cell-group>
+
+  <van-cell-group title="简短描述">
+    <van-field label="描述" type="textarea " value="{{good.brief_description}} " name="brief_description" autosize/>
+  </van-cell-group>
+
+  <van-cell-group title="图片">
+    <include src="/includes/uploader" />
+  </van-cell-group>
+
+  <button form-type="submit">提交</button>
+  <button bindtap="deleteRecord">删除</button>
+
+</form>

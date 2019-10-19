@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    fetch(`/buy/record/${options.id}`)
+    fetch(`/record/${options.id}`)
       .then(res => {
         this.setData({ good: res.data })
         wx.setNavigationBarTitle({ title: res.data.title })

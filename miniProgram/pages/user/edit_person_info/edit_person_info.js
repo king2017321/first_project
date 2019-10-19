@@ -1,4 +1,5 @@
 // pages/user/edit_person_info/edit_person_info.js
+const app = getApp();
 Page({
 
   /**
@@ -23,10 +24,11 @@ Page({
     var that = this
     const db = wx.cloud.database()
     const local_auth = db.collection('local_auth')
-    const openId = wx.cloud.callFunction({
-      name: 'getOpenId',
-    })
-    local_auth.where({"_openid":openId}).get({
+    // const openId = wx.cloud.callFunction({
+    //   name: 'getOpenId',
+    // })
+    const OPENID = app.globalData.openId
+    local_auth.where({ "_openid": OPENID}).get({
       success(res){
         console.log("获取",res)
         that.setData({

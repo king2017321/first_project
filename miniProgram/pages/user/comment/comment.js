@@ -1,8 +1,7 @@
 // pages/comment/comment.js
 import { formatTime } from '../../../utils/util.js';
 var getDate = formatTime(new Date());
-var openId;
-
+const app = getApp();
 Page({
 
   /**
@@ -19,9 +18,9 @@ Page({
     var that = this
     const db = wx.cloud.database()
     const comment_data = db.collection('comment_data')
-    
+    const OPENID = app.globalData.openId
     comment_data.where({
-      _openid:openId
+      _openid: OPENID
     }).get({
       success(res){
         console.log("获取评论",res)
@@ -38,9 +37,10 @@ Page({
     var that = this
     const db = wx.cloud.database()
     const add_trade_info = db.collection('comment_data')
+    const OPENID = app.globalData.openId
     add_trade_info.add({
       data:{
-        rely_id:openId,
+        rely_id: OPENID,
         username:"ring",
         date:getDate,
         avatarUrl:"https://wx.qlogo.cn/mmopen/vi_32/I9pOtx2UVsiaFa58wfZia6Ey9H8NgEmicWm4CH0xoXSm4GR2QgjfDtMtibP0llIL3XOeLde8lgicNsoExic5rnc9QicRw/132",
@@ -56,13 +56,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 1.给全局的openid赋值，毕竟经常用
-    wx.cloud.callFunction({
-      name: 'getOpenId',
-      success(res){
-        openId = res.result.openid
-      }
-    })
+    // // 1.给全局的openid赋值，毕竟经常用
+    // wx.cloud.callFunction({
+    //   name: 'getOpenId',
+    //   success(res){
+    //     openId = res.result.openid
+    //   }
+    // })
     // 2.获取评论
     this.getCommentData()
   },

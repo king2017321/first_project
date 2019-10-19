@@ -19,7 +19,7 @@ Page({
      * @url -页面地址
      */
      categories : [
-       { icon: '/assets/second-hand-transactions.png', name: '二手交易', url:'/pages/second_hand_transaction/index/index' },
+       { icon: '/assets/second-hand-transactions.png', name: '二手交易', url:'/pages/second_hand_transaction/index/index?active=0' },
        { icon: '/assets/second-hand-transactions.png', name: '广告', url:'/pages/advertisement/advertisement_index/advertisement_index' },
        { icon: '/assets/second-hand-transactions.png', name: '内推', url:'/pages/neitui_page/daf/daf' },
        { icon: '/assets/second-hand-transactions.png', name: '租房', url:'/pages/renthouse/index/index' },

@@ -9,10 +9,6 @@
   display: inline-block;
   margin-top: -8rpx;
 }
-
-
-
-
 .widget {
   position: relative;
   margin-top: 5rpx;
