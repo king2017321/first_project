@@ -1,0 +1,18 @@
+<!--miniprogram/pages/look/look.wxml-->
+<view class="container">
+  <text>物品名称：{{company}}  </text>
+
+
+  <text>丢失地点：{{place}}</text>
+
+  <image mode='aspectFit' src="{{img}}"></image>
+
+  <text>详细介绍：{{introduce}}</text>
+</view>
+
+
+  
+
+
+
+

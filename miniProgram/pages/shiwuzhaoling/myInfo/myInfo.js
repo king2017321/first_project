@@ -48,18 +48,9 @@ Page({
           var cc = [];
           cc.push("");
           for (var i = 0; i < list.length; i++) {
-            cc.push(list[i].company);}
-          
-        /* 按company排序 company不重复
-        for (var i = 0; i < cc.length; i++) {
-            for (var j = i + 1; j < cc.length; j++) {
-              if (cc[i] == cc[j]) {
-                cc.splice(j, 1);
-                j--;
-              }
-            }
+            cc.push(list[i].company);
           }
-*/
+          // 删了一部分（重复）
           that.setData({
             list: list,
             nowlist: list,
@@ -104,15 +95,17 @@ Page({
   onShareAppMessage: function () {
 
   },
-
-
-
-  addsw: function () {
+  look: function (e) {
+    var that = this;
+    var ii = e.target.dataset.swid;
+    wx.setStorageSync('updateid', ii);
+    wx.setStorageSync('company', e.target.dataset.company);
+    wx.setStorageSync('introduce', e.target.dataset.introduce);
+    wx.setStorageSync('img_path', e.target.dataset.img);
     wx.navigateTo({
-      url: '../add/add',
+      url: "../Xiangq/Xiangq",
     })
   },
-
   deletesw: function (e) {
     wx.cloud.callFunction({
       name: 'getOpenId',
@@ -183,9 +176,6 @@ Page({
       }
     })
   },
-
-
-
   getnow: function (e) {
     var nn = this.data.company[e.detail.value];
     console.log(nn);
@@ -205,40 +195,26 @@ Page({
       });
     }
   },
-
-  look: function (e) {
-    var that = this;
-    var ii = e.target.dataset.swid;
-    wx.setStorageSync('updateid', ii);
-    wx.setStorageSync('company', e.target.dataset.company);
-    wx.setStorageSync('place', e.target.dataset.place);
-    wx.setStorageSync('introduce', e.target.dataset.introduce);
-    wx.setStorageSync('img_path', e.target.dataset.img);
-    wx.navigateTo({
-      url: "../Xiangq/Xiangq",
-    })
-  },
   myShiwu: function () {
     wx.navigateTo({
-      url: "../myInfo/myInfo",
-    })
-  
-    wx.cloud.callFunction({
-      name: 'getOpenId',
-      data: {},
-      success: res => {
-        var t = res.result.openid;
-        var kk = [];
-        var zz = this.data.list;
-        for (var i = 0; i < zz.length; i++) {
-          if (zz[i].openid == t) {
-            kk.push(zz[i]);
-          }
-        };
-        this.setData({
-          nowlist: kk,
-        });
-      }
-    })
+      url: '../1/1',
+    }),
+      wx.cloud.callFunction({
+        name: 'getOpenId',
+        data: {},
+        success: res => {
+          var t = res.result.openid;
+          var kk = [];
+          var zz = this.data.list;
+          for (var i = 0; i < zz.length; i++) {
+            if (zz[i].openid == t) {
+              kk.push(zz[i]);
+            }
+          };
+          this.setData({
+            nowlist: kk,
+          });
+        }
+      })
   },
 })

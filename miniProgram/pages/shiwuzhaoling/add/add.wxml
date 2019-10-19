@@ -10,8 +10,8 @@
       <input type="text" name="place" placeholder="请输入丢失地点" value="{{place}}" />
     </view>
     <view class="row">
-      <text>简单介绍：</text>
-      <input type="text" name="introduce" placeholder="请输入物品外貌与联系方式" value="{{introduce}}" />
+      <text>详细介绍：</text>
+      <input type="text" name="introduce" placeholder="请输入联系方式及想填写的额外信息" value="{{introduce}}" />
     </view>
     <text decode="true" space="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
     <button size="mini" bindtap="addimg" type="primary">选择图片</button>

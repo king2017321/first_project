@@ -67,10 +67,16 @@ Page({
   },
 
   formSubmit: function (e) {
+    var user = '';
+    wx.getUserInfo({
+      success(res) {
+        user = res.userInfo.nickName
+      }
+    });
     var that = this;
     var formData = e.detail.value;
     var now = new Date();
-    var ii = wx.getStorageSync('swid');
+    var ii = wx.getStorageSync('updateid');
     var formData = e.detail.value;
     var cp;
     wx.cloud.callFunction({
@@ -80,34 +86,33 @@ Page({
         this.setData({
           openid: res.result.openid
         })
-        cp = this.data.openid + '.png';
-        console.log(cp);
-        if (formData.company == "" || formData.introduce == "") {
+        cp = formData.company + formData.introduce + formData.place +this.data.openid + '.png';
+        
+        if (formData.company == "" || formData.introduce == "" || formData.place == "") {
           wx.showModal({
             title: '提示',
             content: '信息填写不完整',
           });
         }
         else {
-          wx.cloud.deleteFile({
-            fileList: [this.data.img_url]
-          });
           if (that.data.img != '') {
             wx.cloud.uploadFile({
+              cloudPath: cp,
               filePath: that.data.img,
               success: res => {
-                // get resource ID
                 that.setData({
                   img_url: res.fileID,
                 });
+
                 wx.cloud.callFunction({
-                  name: 'addsw',
+                  name: 'addSw',
                   data: {
                     company: formData.company,
                     introduce: formData.introduce,
                     place: formData.place,
                     img_path: this.data.img_url,
-                    openid: this.data.openid
+                    openid: this.data.openid,
+                    user: user
                   },
                   success: function (res) {
                     wx.navigateTo({
@@ -115,15 +120,12 @@ Page({
                     })
                   }
                 });
-              },
-              fail: err => {
-                // handle error
               }
             });
           }
-          else {
+    else {
             wx.cloud.callFunction({
-              name: 'addsw',
+              name: 'addSw',
               data: {
                 company: formData.company,
                 place: formData.place,

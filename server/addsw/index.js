@@ -8,6 +8,8 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const company = event.company
+  const user = event.user
+  const place = event.place
   const introduce = event.introduce
   const img_path = event.img_path
   const openid = event.openid
@@ -17,7 +19,8 @@ exports.main = async (event, context) => {
       introduce: introduce,
       place:place,
       img_path: img_path,
-      openid: openid
+      openid: openid,
+      publisher_id: user
     }
   })
   return {

@@ -1,0 +1,31 @@
+<!--miniprogram/pages/daf/daf.wxml-->
+<view class="container">
+
+  <text>\n</text>
+  <view class="widge">
+    <text class="column">失物</text>
+    <text class="column">发布者</text>
+    <text class="link-column">具体信息</text>
+  </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for="{{nowlist}}">
+        <view class="widget">
+          <view>
+            <text class="column">{{item.company}}</text>
+
+                      <navigator class="column" url="/pages/user/other_user/other_user?id={{item.openid}}">{{item.publisher_id}}
+                      </navigator>
+            <view class="link-column">
+            <text class="link" bindtap="look" data-swid="{{item._id}}" data-company="{{item.company}}" data-introduce="{{item.introduce}}" data-img="{{item.img_path}}" >详情</text>|                          
+             <text class="link" bindtap="updatesw" data-swid="{{item._id}}" data-company="{{item.company}}" data-place="{{item.place}}" data-introduce="{{item.introduce}}" data-img="{{item.img_path}}" data-openid="{{item.openid}}">编辑</text>|
+              <text class="link" bindtap="deletesw" data-swid="{{item._id}}" data-index="{{index}}" data-openid="{{item.openid}}">删除</text>
+          </view>
+         </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <text>\n</text>
+</view>
+

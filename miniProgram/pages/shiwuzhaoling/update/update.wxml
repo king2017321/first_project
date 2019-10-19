@@ -1,14 +1,17 @@
-<!--miniprogram/pages/update/update.wxml-->
-
+<!--miniprogram/pages/add/add.wxml-->
 <view class="container">
   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class="row">
-      <text>公司：</text>
-      <input type="text" name="company" placeholder="请输入公司" value="{{company}}" />
+      <text>丢失物品：</text>
+      <input type="text" name="company" placeholder="请输入物品名称" value="{{company}}" />
+    </view>
+      <view class="row">
+      <text>丢失地点：</text>
+      <input type="text" name="place" placeholder="请输入丢失地点" value="{{place}}" />
     </view>
     <view class="row">
-      <text>介绍：</text>
-      <input type="text" name="introduce" placeholder="请输入介绍" value="{{introduce}}" />
+      <text>简单介绍：</text>
+      <input type="text" name="introduce" placeholder="请输入物品外貌与联系方式" value="{{introduce}}" />
     </view>
     <text decode="true" space="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
     <button size="mini" bindtap="addimg" type="primary">选择图片</button>
