@@ -5,7 +5,7 @@
         <!-- part.1 头像昵称信息 -->
         <view class="basic_info">
             <view class="avatar">
-                <image class="avatar_img" src="{{avatarUrl}}"/>
+                <image class="avatar_img" src="{{avatarUrl}}" bindtap='turnto'/>
             </view>
             <view class="title_info">
                 <h1 class="nickname">{{nickName}}</h1>
