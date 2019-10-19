@@ -40,7 +40,7 @@
     </form>
   </van-tab>
 </van-tabs>
-<view wx:if="{{active==0}}">
-  <view wx:if="{{hasMore}} " class="loadmore loading ">正在加载...</view>
-  <view wx:else class="loadmore">没有更多内容了</view>
+<view wx:if="{{active==0&&hasMore}}">
+  <view class="loadmore loading ">正在加载...</view>
 </view>
+<view wx:elif="{{active==0}}" class="loadmore">没有更多内容了</view>

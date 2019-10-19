@@ -8,22 +8,11 @@ Page({
    */
   data: {
     files: [],
-    uploadData: {
-      briefDescription: "上传测试",
-      images: [],
-      phone: "13087228384",
-      price: 11.12,
-      qq: "13087228384",
-      title: "WTF",
-      wx: "13087228384",
-      userId: 123
-    },
     recordBuy: [],
     recordSell: [],
     pageIndex: 0,
     pageSize: 20,
-    hasMore: true,
-    search: false,
+    hasMore: false,
     totalCount: 0,
     active: 0
   },
@@ -92,12 +81,23 @@ Page({
     e.detail.value['images'] = this.data.files
     e.detail.value['user_id'] = app.globalData.openId
     console.log('POST 上传：', e.detail.value)
-    fetch("/record/add", e.detail.value, "POST").then(res => wx.showToast({
-      title: '上传成功', //提示文字
-      duration: 2000, //显示时长
-      mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
-      icon: 'success', //图标，支持"success"、"loading"  
-    }))
+    if (e.detail.value.title == '' || e.detail.value.title == null || e.detail.value.phone == '' || e.detail.value.phone == null || e.detail.value.wx == '' || e.detail.value.wx == null || e.detail.value.qq == '' || e.detail.value.qq == null || e.detail.value.price == '' || e.detail.value.price == null || e.detail.value.brief_description == '' || e.detail.value.brief_description == null) {
+      wx.showToast({
+        title: '请填写完整信息', //提示文字
+        duration: 2000, //显示时长
+        mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+        icon:'none'
+      })
+    } else {
+      fetch("/record/add", e.detail.value, "POST").then(res => wx.showToast({
+        title: '上传成功', //提示文字
+        duration: 2000, //显示时长
+        mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+        icon: 'success', //图标，支持"success"、"loading"  
+      })).then(res => wx.redirectTo({
+        url: '/pages/second_hand_transaction/index/index?active=1'
+      }))
+    }
   },
 
   // /record/sell/{openid}
@@ -174,7 +174,7 @@ Page({
   onSearch: function(e) {
     var inputVal = e.detail
     if (inputVal != "")
-      this.loadMore(inputVal)
+      this.loadSearch(inputVal)
   },
 
   onCancel: function() {
@@ -188,7 +188,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function(options) {
+    this.setData({
+      active: options.active
+    })
     this.loadMore()
   },
 
@@ -213,7 +216,7 @@ Page({
   },
 
   onReachBottom: function() {
-    if (this.data.active == 0) {
+    if (this.data.active == 0 && this.data.hasMore) {
       this.loadMore()
     }
   }

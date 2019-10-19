@@ -25,9 +25,10 @@
     justify-content: left;
     flex-direction: column;
 }
-.to_follow{
+.to_do{
     display: flex;
     flex:3;
+    flex-direction: column;
     align-items: center;
 }
 .detail_info{

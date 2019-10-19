@@ -11,8 +11,9 @@
                 <text class="gender">{{gender==1?"男":"女"}}</text>
                 <text class="credit">信用分:{{credit}}</text>
             </view>
-            <view class="to_follow">
-                <button class="follow_button" type="primary">关注</button>
+            <view class="to_do">
+                <button class="button" type="primary">点赞</button>
+                <button class="button" bindtap="onExporsure" type="primary">曝光</button>
             </view>
         </view>
         <!-- part.2 描述信息 -->    

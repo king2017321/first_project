@@ -72,16 +72,27 @@ Page({
     //   });
     // }
 
-
+    e.detail.value['id'] = this.data.good.id
     e.detail.value['images'] = this.data.files
-    e.detail.value['userId'] = app.globalData.openId
+    e.detail.value['user_id'] = app.globalData.openId
     console.log('Update 更新：', e.detail.value)
-    // fetch("/record/update", e.detail.value, "POST").then(res => wx.showToast({
-    //   title: '上传成功', //提示文字
-    //   duration: 2000, //显示时长
-    //   mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
-    //   icon: 'success', //图标，支持"success"、"loading"  
-    // }))
+    if (e.detail.value.title == '' || e.detail.value.title == null || e.detail.value.phone == '' || e.detail.value.phone == null || e.detail.value.wx == '' || e.detail.value.wx == null || e.detail.value.qq == '' || e.detail.value.qq == null || e.detail.value.price == '' || e.detail.value.price == null || e.detail.value.brief_description == '' || e.detail.value.brief_description == null) {
+      wx.showToast({
+        title: '请填写完整信息', //提示文字
+        duration: 2000, //显示时长
+        mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+        icon: 'none'
+      })
+    } else {
+      fetch("/record/update", e.detail.value, "POST").then(res => wx.showToast({
+        title: '上传成功', //提示文字
+        duration: 2000, //显示时长
+        mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+        icon: 'success', //图标，支持"success"、"loading"  
+      })).then(res => wx.redirectTo({
+        url: '/pages/second_hand_transaction/index/index?active=1'
+      }))
+    }
 
   },
 
@@ -93,7 +104,7 @@ Page({
         mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
         icon: 'success', //图标，支持"success"、"loading"  
       })).then(res => wx.redirectTo({
-        url: '/pages/second_hand_transaction/index/index'
+        url: '/pages/second_hand_transaction/index/index?active=1'
       }))
   },
 
