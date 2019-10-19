@@ -8,7 +8,7 @@
                 <image class="avatar_img" src="{{avatarUrl}}" bindtap='turnto'/>
             </view>
             <view class="title_info">
-                <h1 class="nickname">{{nickName}}</h1>
+                <h1 class="nickname" bindtap='turnto'>{{nickName}}</h1>
                 <text class="gender"></text>
                 <text class="credit"></text>
             </view>
