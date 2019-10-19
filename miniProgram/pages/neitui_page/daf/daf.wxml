@@ -14,13 +14,9 @@
         <view class="widget">
           <view>
             <text class="column">{{item.company}}</text>
-<<<<<<< HEAD
              <text class="column">{{item.introduce}}</text>
-            <text class="column">{{item.publisher_id}}</text>
-=======
-            <text class="column">{{item.introduce}}</text>
             <navigator class="column" url="/pages/user/other_user/other_user?id={{item.openid}}">{{item.publisher_id}}</navigator>
->>>>>>> 421428ac7f1e3699ccebe547edf83cdd6e1a5d40
+
             <view class="link-column">
               <text class="link" bindtap="look" data-neituiid="{{item._id}}" data-company="{{item.company}}" data-introduce="{{item.introduce}}" data-img="{{item.img_path}}">查看</text>|
               <text class="link" bindtap="updateNeitui" data-neituiid="{{item._id}}" data-company="{{item.company}}" data-introduce="{{item.introduce}}" data-img="{{item.img_path}}" data-openid="{{item.openid}}">编辑</text>|
