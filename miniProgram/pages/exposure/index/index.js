@@ -10,6 +10,17 @@ Page({
     }
     this.onQuery();
   },
+  turnto: function(event){
+    //console.log("turn")
+    var that = this
+    var id = event.currentTarget.dataset['no']
+    console.log(id)
+    wx.navigateTo({
+      url: '/pages/user/other_user/other_user?id='+id,
+    //  url: '/pages/perexpo/perexpo?id=' + that.data.openId
+    })
+
+  },
   //向数据库中添加数据
 
   addData: function () {
@@ -63,7 +74,7 @@ Page({
         
         var lis = [];
         for(var i=0; i<res.data.length; i++){
-          lis.push(res.data[i].msgData);
+          lis.push({id: res.data[i].openId,text:res.data[i].msgData});
           console.log(i);
         };
         

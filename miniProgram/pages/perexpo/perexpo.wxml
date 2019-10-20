@@ -1,0 +1,10 @@
+<view >
+  <!-- 留言区域  -->
+    <textarea style="height:160px" type='text' class='input' bindinput='changeInputVal' 
+     value='{{inputVal}}' placeholder='请输入相关信息（包括时间，所购买物品等）' ></textarea>
+
+  </view>
+<view >
+    <button size='mini' type='primary' bindtap='addmsg'>确认</button>
+    <!-- <button size='mini' type='primary' bindtap='addData'>添加</button> -->
+  </view>

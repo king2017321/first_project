@@ -1,24 +1,15 @@
 <view>
-  <view >
-  <!-- 留言区域  -->
-    <textarea style="height:80px" type='text' class='input' bindinput='changeInputVal' 
-     value='{{inputVal}}' placeholder='请输入相关信息（包括时间，所购买物品等）' ></textarea>
 
-  </view>
-  <view >
-    <button size='mini' type='primary' bindtap='addmsg'>确认</button>
-    <!-- <button size='mini' type='primary' bindtap='addData'>添加</button> -->
-  </view>
   
   <!-- msgData里面没有数据才显示  -->
-  <text style="height:70px">曝光列表：</text>
+  <text style="height:70px">曝光列表：(点击文本进入被曝光者主页)</text>
   <text class='msg-info' wx:if="{{queryResult.length==0}}">暂无信息</text>
   <view class="divLine"></view>
 <!-- 留言列表  -->
   <view class='list-view'>
-    <view class='item' wx:for="{{queryResult}}" wx:key="{{index}}" >
+    <view class='item' bindtap='turnto' data-no='{{item.id}}' wx:for="{{queryResult}}" wx:key="{{inde}}" >
       <view style="height:70px">
-        <text >{{item}}</text>
+        <text >{{item.text}}</text>
         
       </view>
       <view class="divLine"></view>

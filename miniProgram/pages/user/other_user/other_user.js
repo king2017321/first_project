@@ -21,8 +21,9 @@ Page({
 
   //点击曝光
   onExporsure(){
-    wx.navigateTo({
-      url: '/pages/exposure/index/index',
+    var that = this
+    wx.navigateTo({   
+      url: '/pages/perexpo/perexpo?id='+that.data.openId
     })
   },
 
@@ -98,13 +99,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     console.log("查看用户:",options.id)
     // 传入的id即为openid
     openId = options.id
+    console.log(this.data.openId)
+    console.log(this.data.openId)
     // 1.载入信息
     this.loadUserInfo()
     this.getComment()
     this.getMine()
+    that.setData({
+      openId:options.id
+    })
   },
 
   /**
